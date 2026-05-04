@@ -1,4 +1,6 @@
-import database.DBConnection;
+package com.health.app;
+
+import com.health.app.database.DBConnection;
 import java.sql.Connection;
 
 public class Main {
