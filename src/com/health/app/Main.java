@@ -1,16 +1,26 @@
 package com.health.app;
 
-import com.health.app.database.DBConnection;
-import java.sql.Connection;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com/health/app/view/register.fxml")
+        );
+
+        Scene scene = new Scene(loader.load());
+        stage.setTitle("Smart Health Fitness App");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
     public static void main(String[] args) {
-        Connection con = DBConnection.getConnection();
-
-        if (con != null) {
-            System.out.println("Connected ✅");
-        } else {
-            System.out.println("Failed ❌");
-        }
+        launch(args);
     }
 }
