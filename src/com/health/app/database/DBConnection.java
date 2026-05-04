@@ -13,7 +13,7 @@ public class DBConnection {
         try {
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
-            e.printStakTrace();
+            e.printStackTrace();
             return null;
         }
     }
