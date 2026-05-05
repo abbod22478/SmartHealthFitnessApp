@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      spacing="0"
-      alignment="TOP_LEFT">
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      spacing="0" alignment="TOP_LEFT">
 
-    <Label text="What is your weekly goal?"
-           styleClass="question-heading"
-           wrapText="true"/>
-
+    <Label text="What is your weekly goal?" styleClass="question-heading" wrapText="true"/>
     <Region prefHeight="10"/>
-
     <Label text="A steady, realistic pace gives the best long-term results."
-           styleClass="question-subtitle"
-           wrapText="true"/>
-
+           styleClass="question-subtitle" wrapText="true"/>
     <Region prefHeight="24"/>
 
     <VBox spacing="10">
-
         <HBox fx:id="weeklyCard1" styleClass="option-card" onMouseClicked="#selectWeekly1" alignment="CENTER_LEFT">
             <VBox spacing="2">
                 <Label text="0.2 kg per week" styleClass="option-text"/>
@@ -65,7 +55,5 @@
                 <Label text="✓" styleClass="check-mark"/>
             </StackPane>
         </HBox>
-
     </VBox>
-
 </VBox>

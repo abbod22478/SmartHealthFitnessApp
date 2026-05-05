@@ -1,66 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      spacing="0"
-      alignment="TOP_LEFT">
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      spacing="0" alignment="TOP_LEFT">
 
-    <Label text="Your body measurements"
-           styleClass="question-heading"
-           wrapText="true"/>
-
+    <Label text="Your body measurements" styleClass="question-heading" wrapText="true"/>
     <Region prefHeight="10"/>
-
     <Label text="We use this to calculate your daily calorie and macro needs."
-           styleClass="question-subtitle"
-           wrapText="true"/>
-
+           styleClass="question-subtitle" wrapText="true"/>
     <Region prefHeight="28"/>
 
-    <!-- Height -->
-    <Label text="Height (cm)"
-           styleClass="option-subtext"
+    <Label text="Height (cm)" styleClass="option-subtext"
            style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
-
     <Region prefHeight="8"/>
-
-    <TextField fx:id="heightField"
-               styleClass="input-field"
-               promptText="e.g. 175"
-               onKeyReleased="#onHeightChanged"
-               maxWidth="Infinity"/>
+    <TextField fx:id="heightField" styleClass="input-field" promptText="e.g. 175" maxWidth="Infinity"/>
 
     <Region prefHeight="18"/>
-
-    <!-- Current weight -->
-    <Label text="Current weight (kg)"
-           styleClass="option-subtext"
+    <Label text="Current weight (kg)" styleClass="option-subtext"
            style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
-
     <Region prefHeight="8"/>
-
-    <TextField fx:id="currentWeightField"
-               styleClass="input-field"
-               promptText="e.g. 70"
-               onKeyReleased="#onCurrentWeightChanged"
-               maxWidth="Infinity"/>
+    <TextField fx:id="currentWeightField" styleClass="input-field" promptText="e.g. 70" maxWidth="Infinity"/>
 
     <Region prefHeight="18"/>
-
-    <!-- Target weight -->
-    <Label text="Target weight (kg)"
-           styleClass="option-subtext"
+    <Label text="Target weight (kg)" styleClass="option-subtext"
            style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
-
     <Region prefHeight="8"/>
-
-    <TextField fx:id="targetWeightField"
-               styleClass="input-field"
-               promptText="e.g. 65"
-               onKeyReleased="#onTargetWeightChanged"
-               maxWidth="Infinity"/>
+    <TextField fx:id="targetWeightField" styleClass="input-field" promptText="e.g. 65" maxWidth="Infinity"/>
 
 </VBox>

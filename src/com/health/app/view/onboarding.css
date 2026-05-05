@@ -96,14 +96,17 @@
     -fx-background-color: rgba(255, 255, 255, 0.08);
     -fx-border-color: rgba(255, 138, 61, 0.4);
 }
-
-.option-card:selected {
+.option-card-selected {
     -fx-background-color: linear-gradient(to right,
-                          rgba(255, 138, 61, 0.12),
-                          rgba(255, 59, 92, 0.12));
+                          rgba(255, 138, 61, 0.22),
+                          rgba(255, 59, 92, 0.22));
+    -fx-background-radius: 18;
     -fx-border-color: #FF6B3D;
-    -fx-border-width: 2;
-    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.3), 18, 0.35, 0, 4);
+    -fx-border-radius: 18;
+    -fx-border-width: 2.5;
+    -fx-padding: 18 20 18 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.4), 18, 0.4, 0, 4);
 }
 .option-text {
     -fx-text-fill: #FFFFFF;
