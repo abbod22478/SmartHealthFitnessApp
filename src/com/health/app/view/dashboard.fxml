@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.health.app.controller.DashboardController"
+           prefWidth="430"
+           prefHeight="760"
+           minWidth="430"
+           minHeight="760"
+           maxWidth="430"
+           maxHeight="760"
+           styleClass="dashboard-root"
+           stylesheets="@dashboard.css">
+
+    <!-- Background diagonal stripes -->
+    <Region styleClass="stripe stripe-one"/>
+    <Region styleClass="stripe stripe-two"/>
+
+    <VBox styleClass="dashboard-page"
+          prefWidth="430"
+          prefHeight="760"
+          minWidth="430"
+          minHeight="760"
+          maxWidth="430"
+          maxHeight="760">
+
+        <!-- Top bar -->
+        <HBox alignment="CENTER">
+            <Label text="☰" styleClass="top-menu"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="🔔" styleClass="top-bell"/>
+        </HBox>
+
+        <!-- Header -->
+        <VBox spacing="2">
+            <Label text="Welcome back,"
+                   styleClass="welcome-text"/>
+
+            <Label fx:id="dashboardNameLabel"
+                   text="KHALED"
+                   styleClass="dashboard-name"/>
+        </VBox>
+
+        <!-- Target card -->
+        <VBox styleClass="target-card" spacing="12">
+
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="TODAY'S TARGET"
+                           styleClass="target-title"/>
+
+                    <HBox alignment="BOTTOM_LEFT" spacing="8">
+                        <Label text="2,250"
+                               styleClass="target-number"/>
+
+                        <Label text="calories"
+                               styleClass="target-unit"/>
+                    </HBox>
+
+                    <Label text="You're on track! Keep it up."
+                           styleClass="target-message"/>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <StackPane styleClass="percent-circle">
+                    <Label text="68%" styleClass="percent-text"/>
+                </StackPane>
+            </HBox>
+
+            <StackPane styleClass="progress-track">
+                <Region styleClass="progress-fill"
+                        prefWidth="230"
+                        maxWidth="230"
+                        StackPane.alignment="CENTER_LEFT"/>
+            </StackPane>
+
+        </VBox>
+
+        <!-- Macros -->
+        <Label text="MACROS"
+               styleClass="section-title"/>
+
+        <HBox spacing="10">
+
+            <VBox styleClass="macro-card"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity"
+                  alignment="CENTER"
+                  spacing="5">
+                <Label text="💪" styleClass="macro-icon"/>
+                <Label text="PROTEIN" styleClass="macro-title"/>
+                <Label text="160g" styleClass="macro-value"/>
+            </VBox>
+
+            <VBox styleClass="macro-card"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity"
+                  alignment="CENTER"
+                  spacing="5">
+                <Label text="🌾" styleClass="macro-icon"/>
+                <Label text="CARBS" styleClass="macro-title"/>
+                <Label text="250g" styleClass="macro-value"/>
+            </VBox>
+
+            <VBox styleClass="macro-card"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity"
+                  alignment="CENTER"
+                  spacing="5">
+                <Label text="🔥" styleClass="macro-icon"/>
+                <Label text="FAT" styleClass="macro-title"/>
+                <Label text="70g" styleClass="macro-value"/>
+            </VBox>
+
+        </HBox>
+
+        <!-- Today -->
+        <Label text="TODAY"
+               styleClass="section-title"/>
+
+        <VBox spacing="10">
+
+            <HBox spacing="10">
+                <HBox styleClass="action-card"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity"
+                      alignment="CENTER_LEFT"
+                      spacing="12">
+                    <StackPane styleClass="action-icon-box">
+                        <Label text="🍽" styleClass="action-icon"/>
+                    </StackPane>
+
+                    <VBox spacing="2">
+                        <Label text="MEALS" styleClass="action-title"/>
+                        <Label text="LOG YOUR FOOD" styleClass="action-subtitle"/>
+                    </VBox>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="›" styleClass="arrow-text"/>
+                </HBox>
+
+                <HBox styleClass="action-card"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity"
+                      alignment="CENTER_LEFT"
+                      spacing="12">
+                    <StackPane styleClass="action-icon-box">
+                        <Label text="🏋" styleClass="action-icon"/>
+                    </StackPane>
+
+                    <VBox spacing="2">
+                        <Label text="WORKOUTS" styleClass="action-title"/>
+                        <Label text="TRACK TRAINING" styleClass="action-subtitle"/>
+                    </VBox>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="›" styleClass="arrow-text"/>
+                </HBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <HBox styleClass="action-card"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity"
+                      alignment="CENTER_LEFT"
+                      spacing="12">
+                    <StackPane styleClass="action-icon-box">
+                        <Label text="📈" styleClass="action-icon"/>
+                    </StackPane>
+
+                    <VBox spacing="2">
+                        <Label text="PROGRESS" styleClass="action-title"/>
+                        <Label text="BODY CHANGES" styleClass="action-subtitle"/>
+                    </VBox>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="›" styleClass="arrow-text"/>
+                </HBox>
+
+                <HBox styleClass="action-card"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity"
+                      alignment="CENTER_LEFT"
+                      spacing="12">
+                    <StackPane styleClass="action-icon-box">
+                        <Label text="🔔" styleClass="action-icon"/>
+                    </StackPane>
+
+                    <VBox spacing="2">
+                        <Label text="REMINDERS" styleClass="action-title"/>
+                        <Label text="STAY ON TRACK" styleClass="action-subtitle"/>
+                    </VBox>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="›" styleClass="arrow-text"/>
+                </HBox>
+            </HBox>
+
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <!-- Bottom navigation -->
+        <HBox styleClass="bottom-nav" alignment="CENTER" spacing="24">
+            <VBox alignment="CENTER" spacing="3">
+                <Label text="⌂" styleClass="nav-icon-active"/>
+                <Label text="HOME" styleClass="nav-text-active"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="3">
+                <Label text="▤" styleClass="nav-icon"/>
+                <Label text="DIARY" styleClass="nav-text"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="3">
+                <Label text="▥" styleClass="nav-icon"/>
+                <Label text="WORKOUTS" styleClass="nav-text"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="3">
+                <Label text="▥" styleClass="nav-icon"/>
+                <Label text="PROGRESS" styleClass="nav-text"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="3">
+                <Label text="♙" styleClass="nav-icon"/>
+                <Label text="PROFILE" styleClass="nav-text"/>
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+</StackPane>

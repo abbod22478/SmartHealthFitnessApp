@@ -1,5 +1,8 @@
 package com.health.app.controller;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import com.health.app.model.OnboardingData;
 import com.health.app.model.User;
 import com.health.app.service.UserService;
@@ -336,7 +339,6 @@ public class OnboardingController {
         boolean created = new UserService().createAccount(user, data.getPassword());
 
         if (created) {
-            showAccountMessage("Account created! Welcome, " + data.getName(), false);
             System.out.println("===== USER SAVED TO DATABASE =====");
             System.out.println("Name: " + data.getName());
             System.out.println("Email: " + data.getEmail());
@@ -346,6 +348,9 @@ public class OnboardingController {
             System.out.println("Weight: " + data.getCurrentWeight());
             System.out.println("Goal: " + data.getGoal());
             System.out.println("==================================");
+
+            openDashboard();
+
         } else {
             showAccountMessage("Couldn't create account. Email may already exist.", true);
         }
@@ -357,5 +362,22 @@ public class OnboardingController {
         accountMessage.setStyle(isError
                 ? "-fx-text-fill: #FF6B6B; -fx-font-size: 13px;"
                 : "-fx-text-fill: #43D18D; -fx-font-size: 13px;");
+    }
+    private void openDashboard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/health/app/view/dashboard.fxml"));
+            Parent dashboardRoot = loader.load();
+
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setUserName(data.getName());
+
+            Stage stage = (Stage) nextButton.getScene().getWindow();
+            Scene scene = stage.getScene();
+            scene.setRoot(dashboardRoot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAccountMessage("Account created, but dashboard could not open.", true);
+        }
     }
 }
