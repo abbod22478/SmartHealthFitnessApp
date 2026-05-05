@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            styleClass="transparent-scroll"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="0" alignment="TOP_LEFT">
+
+        <Label text="Healthy habits that matter to you?"
+               styleClass="question-heading"
+               wrapText="true"/>
+
+        <Region prefHeight="10"/>
+
+        <Label text="Pick as many as you like — we'll help you build them."
+               styleClass="question-subtitle"
+               wrapText="true"/>
+
+        <Region prefHeight="20"/>
+
+        <!-- Section: Recommended -->
+        <Label text="Recommended for you"
+               styleClass="option-subtext"
+               style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+        <Region prefHeight="12"/>
+
+        <VBox spacing="10">
+
+            <HBox fx:id="habitCard1" styleClass="option-card" onMouseClicked="#toggleHabit1" alignment="CENTER_LEFT">
+                <Label text="Eat more protein" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck1" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+            <HBox fx:id="habitCard2" styleClass="option-card" onMouseClicked="#toggleHabit2" alignment="CENTER_LEFT">
+                <Label text="Track macros" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck2" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+            <HBox fx:id="habitCard3" styleClass="option-card" onMouseClicked="#toggleHabit3" alignment="CENTER_LEFT">
+                <Label text="Track calories" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck3" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+            <HBox fx:id="habitCard4" styleClass="option-card" onMouseClicked="#toggleHabit4" alignment="CENTER_LEFT">
+                <Label text="Plan more meals" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck4" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+        </VBox>
+
+        <Region prefHeight="22"/>
+
+        <!-- Section: More habits -->
+        <Label text="More healthy habits"
+               styleClass="option-subtext"
+               style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+        <Region prefHeight="12"/>
+
+        <VBox spacing="10">
+
+            <HBox fx:id="habitCard5" styleClass="option-card" onMouseClicked="#toggleHabit5" alignment="CENTER_LEFT">
+                <Label text="Drink more water" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck5" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+            <HBox fx:id="habitCard6" styleClass="option-card" onMouseClicked="#toggleHabit6" alignment="CENTER_LEFT">
+                <Label text="Workout more" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck6" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+            <HBox fx:id="habitCard7" styleClass="option-card" onMouseClicked="#toggleHabit7" alignment="CENTER_LEFT">
+                <Label text="Eat more vegetables" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck7" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+            <HBox fx:id="habitCard8" styleClass="option-card" onMouseClicked="#toggleHabit8" alignment="CENTER_LEFT">
+                <Label text="Prioritize sleep" styleClass="option-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="habitCheck8" styleClass="check-circle" visible="false">
+                    <Label text="✓" styleClass="check-mark"/>
+                </StackPane>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+</ScrollPane>

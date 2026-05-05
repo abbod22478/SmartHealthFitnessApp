@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="What is your activity level?"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="Not including workouts — we count those separately."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="24"/>
+
+    <VBox spacing="10">
+
+        <HBox fx:id="activityCard1" styleClass="option-card" onMouseClicked="#selectActivity1" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="Not very active" styleClass="option-text"/>
+                <Label text="Mostly sitting, e.g. desk job" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="activityCheck1" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="activityCard2" styleClass="option-card" onMouseClicked="#selectActivity2" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="Lightly active" styleClass="option-text"/>
+                <Label text="On your feet a good part of the day" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="activityCheck2" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="activityCard3" styleClass="option-card" onMouseClicked="#selectActivity3" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="Active" styleClass="option-text"/>
+                <Label text="Some physical activity daily" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="activityCheck3" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="activityCard4" styleClass="option-card" onMouseClicked="#selectActivity4" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="Very active" styleClass="option-text"/>
+                <Label text="Heavy physical activity daily" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="activityCheck4" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+    </VBox>
+
+</VBox>

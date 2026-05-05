@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="Want help building weekly meal plans?"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="Your custom plan will be tailored to your lifestyle and goals."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="24"/>
+
+    <VBox spacing="10">
+
+        <HBox fx:id="mealPlanCard1" styleClass="option-card" onMouseClicked="#selectMealPlan1" alignment="CENTER_LEFT">
+            <Label text="Yes, definitely" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="mealPlanCheck1" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="mealPlanCard2" styleClass="option-card" onMouseClicked="#selectMealPlan2" alignment="CENTER_LEFT">
+            <Label text="Open to trying" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="mealPlanCheck2" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="mealPlanCard3" styleClass="option-card" onMouseClicked="#selectMealPlan3" alignment="CENTER_LEFT">
+            <Label text="No thanks" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="mealPlanCheck3" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+    </VBox>
+
+</VBox>

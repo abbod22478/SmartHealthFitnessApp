@@ -9,8 +9,7 @@ import java.sql.ResultSet;
 
 public class UserDAO {
 
-    // INSERT USER
-    public boolean addUser(User user) {
+    public boolean addUser(User user, String password) {
         String sql = "INSERT INTO users (name, email, password, age, gender, height, weight, goal) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -18,8 +17,8 @@ public class UserDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, user.getName());
-            stmt.setString(2, user.getCredentials()); // email
-            stmt.setString(3, "1234"); // temporary password
+            stmt.setString(2, user.getCredentials()); // email goes here
+            stmt.setString(3, password);
             stmt.setInt(4, user.getAge());
             stmt.setString(5, user.getGender());
             stmt.setDouble(6, user.getHeight());
@@ -35,7 +34,6 @@ public class UserDAO {
         }
     }
 
-    // GET USER BY ID
     public User getUserById(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
 

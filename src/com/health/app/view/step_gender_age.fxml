@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="Tell us about yourself"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="This helps us calculate your nutrition needs."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="28"/>
+
+    <!-- Gender field -->
+    <Label text="Gender"
+           styleClass="option-subtext"
+           style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+    <Region prefHeight="8"/>
+
+    <ComboBox fx:id="genderBox"
+              styleClass="input-field"
+              promptText="Select your gender"
+              maxWidth="Infinity"
+              onAction="#onGenderSelected">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Male"/>
+                <String fx:value="Female"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Region prefHeight="20"/>
+
+    <!-- Age field -->
+    <Label text="Age"
+           styleClass="option-subtext"
+           style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+    <Region prefHeight="8"/>
+
+    <TextField fx:id="ageField"
+               styleClass="input-field"
+               promptText="Enter your age"
+               onKeyReleased="#onAgeChanged"
+               maxWidth="Infinity"/>
+
+</VBox>

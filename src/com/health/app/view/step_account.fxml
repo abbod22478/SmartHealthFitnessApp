@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="Create your account"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="Almost done — your personalized plan is ready."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="28"/>
+
+    <!-- Email -->
+    <Label text="Email"
+           styleClass="option-subtext"
+           style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+    <Region prefHeight="8"/>
+
+    <TextField fx:id="emailField"
+               styleClass="input-field"
+               promptText="you@example.com"
+               onKeyReleased="#onEmailChanged"
+               maxWidth="Infinity"/>
+
+    <Region prefHeight="18"/>
+
+    <!-- Password -->
+    <Label text="Password"
+           styleClass="option-subtext"
+           style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+    <Region prefHeight="8"/>
+
+    <PasswordField fx:id="passwordField"
+                   styleClass="input-field"
+                   promptText="Create a password"
+                   onKeyReleased="#onPasswordChanged"
+                   maxWidth="Infinity"/>
+
+    <Region prefHeight="20"/>
+
+    <!-- Status message (success or error) -->
+    <Label fx:id="accountMessage"
+           text=""
+           styleClass="option-subtext"
+           wrapText="true"/>
+
+</VBox>

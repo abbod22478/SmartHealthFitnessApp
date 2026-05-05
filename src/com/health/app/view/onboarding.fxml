@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.health.app.controller.OnboardingController"
+           prefWidth="430"
+           prefHeight="760"
+           styleClass="root-pane"
+           stylesheets="@onboarding.css">
+
+    <!-- Decorative glow orbs -->
+    <Region styleClass="glow-orb-orange"
+            prefWidth="400"
+            prefHeight="400"
+            maxWidth="400"
+            maxHeight="400"
+            translateX="-150"
+            translateY="-280"/>
+
+    <Region styleClass="glow-orb-red"
+            prefWidth="380"
+            prefHeight="380"
+            maxWidth="380"
+            maxHeight="380"
+            translateX="170"
+            translateY="290"/>
+
+    <!-- Main phone frame -->
+    <VBox styleClass="phone-frame" spacing="0">
+
+        <HBox styleClass="top-bar" alignment="CENTER">
+            <Label fx:id="titleLabel" text="Welcome" styleClass="top-title"/>
+        </HBox>
+
+        <HBox fx:id="progressTrack" styleClass="progress-track" spacing="4" alignment="CENTER"/>
+
+        <StackPane fx:id="contentArea"
+                   styleClass="content-area"
+                   VBox.vgrow="ALWAYS"/>
+
+        <!-- Bottom navigation -->
+        <HBox styleClass="bottom-bar" spacing="14" alignment="CENTER">
+            <Button fx:id="backButton"
+                    text="←"
+                    onAction="#previous"
+                    styleClass="back-button"
+                    minWidth="56"
+                    minHeight="56"
+                    maxWidth="56"
+                    maxHeight="56"/>
+
+            <Button fx:id="nextButton"
+                    text="Next"
+                    onAction="#next"
+                    styleClass="next-button"
+                    HBox.hgrow="ALWAYS"
+                    maxWidth="Infinity"
+                    prefHeight="56"/>
+        </HBox>
+
+    </VBox>
+</StackPane>

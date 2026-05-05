@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="What is your main goal?"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="Pick what matters most to you right now."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="24"/>
+
+    <VBox spacing="10">
+
+        <HBox fx:id="card1" styleClass="option-card" onMouseClicked="#selectCard1" alignment="CENTER_LEFT">
+            <Label text="Lose weight" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="check1" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="card2" styleClass="option-card" onMouseClicked="#selectCard2" alignment="CENTER_LEFT">
+            <Label text="Gain muscle" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="check2" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="card3" styleClass="option-card" onMouseClicked="#selectCard3" alignment="CENTER_LEFT">
+            <Label text="Maintain weight" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="check3" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="card4" styleClass="option-card" onMouseClicked="#selectCard4" alignment="CENTER_LEFT">
+            <Label text="Improve fitness" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="check4" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="card5" styleClass="option-card" onMouseClicked="#selectCard5" alignment="CENTER_LEFT">
+            <Label text="Eat healthier" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="check5" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+    </VBox>
+
+</VBox>

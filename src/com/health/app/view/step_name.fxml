@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <!-- Question heading -->
+    <Label text="What should we call you?"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <!-- Spacer -->
+    <Region prefHeight="10"/>
+
+    <!-- Subtitle -->
+    <Label text="We'll use this name across your app."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <!-- Spacer -->
+    <Region prefHeight="36"/>
+
+    <!-- Input field -->
+    <TextField fx:id="nameField"
+               promptText="Enter your name"
+               styleClass="input-field"
+               maxWidth="Infinity"/>
+
+</VBox>

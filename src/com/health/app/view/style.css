@@ -1,0 +1,43 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #0B1020, #111827);
+}
+
+/* Titles */
+.title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* Input */
+.text-field {
+    -fx-background-color: #1E293B;
+    -fx-text-fill: white;
+    -fx-background-radius: 12;
+    -fx-padding: 10;
+    -fx-prompt-text-fill: #94A3B8;
+}
+
+/* Buttons */
+.primary-btn {
+    -fx-background-color: #60A5FA;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25;
+}
+
+.primary-btn:hover {
+    -fx-background-color: #3B82F6;
+}
+
+/* Back button */
+.back-btn {
+    -fx-background-color: #1E293B;
+    -fx-text-fill: white;
+    -fx-background-radius: 30;
+}
+
+/* Progress bar */
+.progress-bar {
+    -fx-accent: #22C55E;
+}

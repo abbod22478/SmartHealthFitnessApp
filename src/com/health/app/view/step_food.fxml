@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="What type of food do you prefer?"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="We'll tailor your meals to match this."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="24"/>
+
+    <VBox spacing="10">
+
+        <HBox fx:id="foodCard1" styleClass="option-card" onMouseClicked="#selectFood1" alignment="CENTER_LEFT">
+            <Label text="Balanced" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="foodCheck1" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="foodCard2" styleClass="option-card" onMouseClicked="#selectFood2" alignment="CENTER_LEFT">
+            <Label text="High protein" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="foodCheck2" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="foodCard3" styleClass="option-card" onMouseClicked="#selectFood3" alignment="CENTER_LEFT">
+            <Label text="Low carb" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="foodCheck3" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="foodCard4" styleClass="option-card" onMouseClicked="#selectFood4" alignment="CENTER_LEFT">
+            <Label text="Vegetarian" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="foodCheck4" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="foodCard5" styleClass="option-card" onMouseClicked="#selectFood5" alignment="CENTER_LEFT">
+            <Label text="Mediterranean" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="foodCheck5" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="foodCard6" styleClass="option-card" onMouseClicked="#selectFood6" alignment="CENTER_LEFT">
+            <Label text="No preference" styleClass="option-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="foodCheck6" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+    </VBox>
+
+</VBox>

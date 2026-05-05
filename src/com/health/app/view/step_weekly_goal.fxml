@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0"
+      alignment="TOP_LEFT">
+
+    <Label text="What is your weekly goal?"
+           styleClass="question-heading"
+           wrapText="true"/>
+
+    <Region prefHeight="10"/>
+
+    <Label text="A steady, realistic pace gives the best long-term results."
+           styleClass="question-subtitle"
+           wrapText="true"/>
+
+    <Region prefHeight="24"/>
+
+    <VBox spacing="10">
+
+        <HBox fx:id="weeklyCard1" styleClass="option-card" onMouseClicked="#selectWeekly1" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="0.2 kg per week" styleClass="option-text"/>
+                <Label text="Recommended — easiest to maintain" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="weeklyCheck1" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="weeklyCard2" styleClass="option-card" onMouseClicked="#selectWeekly2" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="0.5 kg per week" styleClass="option-text"/>
+                <Label text="Steady and consistent progress" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="weeklyCheck2" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="weeklyCard3" styleClass="option-card" onMouseClicked="#selectWeekly3" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="0.8 kg per week" styleClass="option-text"/>
+                <Label text="Faster pace — needs more effort" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="weeklyCheck3" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+        <HBox fx:id="weeklyCard4" styleClass="option-card" onMouseClicked="#selectWeekly4" alignment="CENTER_LEFT">
+            <VBox spacing="2">
+                <Label text="1.0 kg per week" styleClass="option-text"/>
+                <Label text="Aggressive — best for short-term goals" styleClass="option-subtext" wrapText="true"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="weeklyCheck4" styleClass="check-circle" visible="false">
+                <Label text="✓" styleClass="check-mark"/>
+            </StackPane>
+        </HBox>
+
+    </VBox>
+
+</VBox>

@@ -1,0 +1,256 @@
+/* ============================================================
+   Smart Health Fitness App - Onboarding Stylesheet
+   Theme: Apple Fitness+ (dark + orange-red gradient)
+   ============================================================ */
+
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom,
+                          #0A0A0F 0%,
+                          #12121A 60%,
+                          #1A0F14 100%);
+}
+
+.phone-frame {
+    -fx-background-color: transparent;
+}
+
+.top-bar {
+    -fx-padding: 24 24 12 24;
+}
+
+.top-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.progress-track {
+    -fx-padding: 4 24 16 24;
+}
+
+.progress-segment {
+    -fx-background-color: #2A2A35;
+    -fx-background-radius: 6;
+    -fx-pref-height: 6;
+    -fx-min-height: 6;
+    -fx-max-height: 6;
+}
+
+.progress-segment-active {
+    -fx-background-color: linear-gradient(to right, #FF8A3D, #FF3B5C);
+    -fx-background-radius: 6;
+    -fx-pref-height: 6;
+    -fx-min-height: 6;
+    -fx-max-height: 6;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.5), 8, 0.4, 0, 1);
+}
+
+.content-area {
+    -fx-padding: 12 24 12 24;
+    -fx-background-color: transparent;
+}
+
+.question-heading {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.question-subtitle {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+}
+
+.input-field {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(255, 138, 61, 0.18);
+    -fx-border-radius: 18;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #6B6B7A;
+    -fx-font-size: 16px;
+    -fx-padding: 18 20 18 20;
+}
+
+.input-field:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-border-color: #FF6B3D;
+    -fx-border-width: 1.8;
+    -fx-effect: dropshadow(gaussian, rgba(255, 107, 61, 0.35), 22, 0.4, 0, 4);
+}
+
+.option-card {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 18;
+    -fx-border-width: 1.5;
+    -fx-padding: 18 20 18 20;
+    -fx-cursor: hand;
+}
+
+.option-card:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-border-color: rgba(255, 138, 61, 0.4);
+}
+
+.option-card:selected {
+    -fx-background-color: linear-gradient(to right,
+                          rgba(255, 138, 61, 0.12),
+                          rgba(255, 59, 92, 0.12));
+    -fx-border-color: #FF6B3D;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.3), 18, 0.35, 0, 4);
+}
+.option-text {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.option-subtext {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 13px;
+}
+
+.check-circle {
+    -fx-background-color: linear-gradient(to right, #FF8A3D, #FF3B5C);
+    -fx-background-radius: 50;
+    -fx-min-width: 26;
+    -fx-min-height: 26;
+    -fx-max-width: 26;
+    -fx-max-height: 26;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.5), 10, 0.4, 0, 2);
+}
+
+.check-mark {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.bottom-bar {
+    -fx-padding: 16 24 24 24;
+    -fx-background-color: transparent;
+}
+
+.back-button {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 50;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-min-width: 56;
+    -fx-min-height: 56;
+    -fx-max-width: 56;
+    -fx-max-height: 56;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255, 255, 255, 0.10);
+    -fx-border-radius: 50;
+    -fx-border-width: 1.5;
+}
+
+.back-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.14);
+    -fx-border-color: rgba(255, 138, 61, 0.5);
+}
+
+.next-button {
+    -fx-background-color: linear-gradient(to right, #FF8A3D, #FF3B5C);
+    -fx-background-radius: 32;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 16 28 16 28;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.55), 22, 0.45, 0, 6);
+}
+
+.next-button:hover {
+    -fx-background-color: linear-gradient(to right, #FF7A2D, #FF2B4C);
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.7), 28, 0.55, 0, 8);
+}
+
+.next-button:disabled {
+    -fx-background-color: #2A2A35;
+    -fx-text-fill: #6B6B7A;
+    -fx-opacity: 1;
+    -fx-effect: none;
+}
+
+.transparent-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+
+.transparent-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.transparent-scroll > .scroll-bar:vertical {
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+.glow-orb-orange {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 50%,
+                          rgba(255, 138, 61, 0.28) 0%,
+                          rgba(255, 138, 61, 0.0) 70%);
+    -fx-background-radius: 200;
+}
+
+.glow-orb-red {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 50%,
+                          rgba(255, 59, 92, 0.22) 0%,
+                          rgba(255, 59, 92, 0.0) 70%);
+    -fx-background-radius: 200;
+}
+/* ---------- COMBOBOX (dropdown) STYLING ---------- */
+.combo-box.input-field {
+    -fx-padding: 0;
+}
+
+.combo-box.input-field .list-cell {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: transparent;
+    -fx-padding: 18 20 18 20;
+    -fx-font-size: 16px;
+}
+
+.combo-box.input-field .arrow,
+.combo-box.input-field .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box.input-field .arrow {
+    -fx-background-color: #FF6B3D;
+    -fx-shape: "M0 0 L8 0 L4 5 Z";
+    -fx-padding: 4 6 4 6;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1A1A22;
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 138, 61, 0.25);
+    -fx-border-radius: 14;
+    -fx-border-width: 1.2;
+    -fx-padding: 6;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 15px;
+    -fx-background-radius: 10;
+}
+
+.combo-box-popup .list-view .list-cell:hover,
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: rgba(255, 138, 61, 0.15);
+    -fx-text-fill: #FFFFFF;
+}

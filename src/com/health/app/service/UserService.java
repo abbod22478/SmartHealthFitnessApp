@@ -11,8 +11,8 @@ public class UserService {
         this.userDAO = new UserDAO();
     }
 
-    public boolean createAccount(User user) {
-        return userDAO.addUser(user);
+    public boolean createAccount(User user, String password) {
+        return userDAO.addUser(user, password);
     }
 
     public User getUserById(int userId) {
@@ -20,10 +20,10 @@ public class UserService {
     }
 
     public void updateProfile(User user) {
-        // We will implement this after updateUser() in UserDAO
+        // Will implement after updateUser() in UserDAO.
     }
 
     public void updateFitnessGoal(int userId, String newGoal) {
-        // We will implement this after updateFitnessGoal() in UserDAO
+        // Will implement after updateFitnessGoal() in UserDAO.
     }
 }
