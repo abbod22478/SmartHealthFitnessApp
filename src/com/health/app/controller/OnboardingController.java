@@ -349,7 +349,7 @@ public class OnboardingController {
             System.out.println("Goal: " + data.getGoal());
             System.out.println("==================================");
 
-            openDashboard();
+            openDashboard(user);
 
         } else {
             showAccountMessage("Couldn't create account. Email may already exist.", true);
@@ -363,16 +363,19 @@ public class OnboardingController {
                 ? "-fx-text-fill: #FF6B6B; -fx-font-size: 13px;"
                 : "-fx-text-fill: #43D18D; -fx-font-size: 13px;");
     }
-    private void openDashboard() {
+    private void openDashboard(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/health/app/view/dashboard.fxml"));
             Parent dashboardRoot = loader.load();
 
             DashboardController dashboardController = loader.getController();
-            dashboardController.setUserName(data.getName());
+            dashboardController.setUser(user);
 
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            Scene scene = stage.getScene();
+            Scene scene = nextButton.getScene();
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(
+                    getClass().getResource("/com/health/app/view/dashboard.css").toExternalForm()
+            );
             scene.setRoot(dashboardRoot);
 
         } catch (Exception e) {

@@ -1,240 +1,209 @@
-.dashboard-root {
-    -fx-background-color: #030507;
-    -fx-pref-width: 430;
-    -fx-pref-height: 760;
-    -fx-min-width: 430;
-    -fx-min-height: 760;
-    -fx-max-width: 430;
-    -fx-max-height: 760;
+/* ============================================================
+   Smart Health Fitness App - Dashboard Stylesheet
+   Theme: Apple Fitness+ (matches onboarding)
+   ============================================================ */
+
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom,
+                          #0A0A0F 0%,
+                          #12121A 60%,
+                          #1A0F14 100%);
 }
 
-.dashboard-page {
-    -fx-pref-width: 430;
-    -fx-pref-height: 760;
-    -fx-min-width: 430;
-    -fx-min-height: 760;
-    -fx-max-width: 430;
-    -fx-max-height: 760;
-    -fx-padding: 18 20 10 20;
-    -fx-spacing: 9;
-    -fx-background-color: linear-gradient(to bottom, #05070B 0%, #070B11 50%, #030507 100%);
+.glow-orb-orange {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 50%,
+                          rgba(255, 138, 61, 0.28) 0%,
+                          rgba(255, 138, 61, 0.0) 70%);
+    -fx-background-radius: 200;
 }
 
-.stripe {
-    -fx-background-color: rgba(255, 255, 255, 0.018);
-    -fx-rotate: -28;
+.glow-orb-red {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 50%,
+                          rgba(255, 59, 92, 0.22) 0%,
+                          rgba(255, 59, 92, 0.0) 70%);
+    -fx-background-radius: 200;
 }
 
-.stripe-one {
-    -fx-pref-width: 80;
-    -fx-pref-height: 820;
-    -fx-translate-x: 120;
-    -fx-translate-y: -140;
-}
-
-.stripe-two {
-    -fx-pref-width: 50;
-    -fx-pref-height: 820;
-    -fx-translate-x: 175;
-    -fx-translate-y: -120;
-}
-
-.top-menu,
-.top-bell {
-    -fx-text-fill: #FF6B00;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-
-.welcome-text {
-    -fx-text-fill: #B6B6B6;
-    -fx-font-size: 15px;
-}
-
-.dashboard-name {
-    -fx-text-fill: white;
-    -fx-font-size: 34px;
-    -fx-font-weight: 900;
-    -fx-font-style: italic;
-}
-
-.target-card {
-    -fx-background-color: linear-gradient(to bottom right, #090D12, #030507);
-    -fx-background-radius: 22;
-    -fx-border-color: #FF6B00;
-    -fx-border-radius: 22;
-    -fx-border-width: 1.8;
-    -fx-padding: 18 20 16 20;
-    -fx-effect: dropshadow(gaussian, rgba(255, 107, 0, 0.25), 24, 0.35, 0, 7);
-}
-
-.target-title {
-    -fx-text-fill: #B8B8B8;
-    -fx-font-size: 15px;
-    -fx-font-weight: 900;
-}
-
-.target-number {
-    -fx-text-fill: white;
-    -fx-font-size: 40px;
-    -fx-font-weight: 900;
-}
-
-.target-unit {
-    -fx-text-fill: #D8D8D8;
-    -fx-font-size: 14px;
-    -fx-padding: 0 0 7 0;
-}
-
-.target-message {
-    -fx-text-fill: #D0D0D0;
+/* ---------- HEADER ---------- */
+.welcome-label {
+    -fx-text-fill: #9A9AA8;
     -fx-font-size: 13px;
 }
 
-.percent-circle {
-    -fx-min-width: 76;
-    -fx-min-height: 76;
-    -fx-max-width: 76;
-    -fx-max-height: 76;
-    -fx-background-radius: 80;
-    -fx-border-radius: 80;
-    -fx-border-width: 8;
-    -fx-border-color: #FF6B00;
-    -fx-background-color: rgba(255, 255, 255, 0.02);
-    -fx-effect: dropshadow(gaussian, rgba(255, 107, 0, 0.22), 16, 0.3, 0, 3);
-}
-
-.percent-text {
-    -fx-text-fill: white;
-    -fx-font-size: 21px;
-    -fx-font-weight: 900;
-}
-
-.progress-track {
-    -fx-background-color: #202020;
-    -fx-background-radius: 20;
-    -fx-min-height: 8;
-    -fx-max-height: 8;
-}
-
-.progress-fill {
-    -fx-background-color: #FF6B00;
-    -fx-background-radius: 20;
-    -fx-min-height: 8;
-    -fx-max-height: 8;
-}
-
-.section-title {
-    -fx-text-fill: white;
-    -fx-font-size: 21px;
-    -fx-font-weight: 900;
-}
-
-.macro-card {
-    -fx-background-color: linear-gradient(to bottom right, rgba(18, 21, 26, 0.98), rgba(4, 6, 9, 0.98));
-    -fx-background-radius: 16;
-    -fx-border-color: rgba(255, 255, 255, 0.20);
-    -fx-border-radius: 16;
-    -fx-border-width: 1;
-    -fx-padding: 10 8 10 8;
-    -fx-min-height: 88;
-    -fx-max-height: 88;
-}
-
-.macro-icon {
-    -fx-text-fill: #FF6B00;
-    -fx-font-size: 20px;
-}
-
-.macro-title {
-    -fx-text-fill: #FF6B00;
-    -fx-font-size: 12px;
-    -fx-font-weight: 900;
-}
-
-.macro-value {
-    -fx-text-fill: white;
+.user-name {
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 24px;
-    -fx-font-weight: 900;
-}
-
-.action-card {
-    -fx-background-color: linear-gradient(to bottom right, rgba(17, 20, 25, 0.98), rgba(3, 5, 8, 0.98));
-    -fx-background-radius: 16;
-    -fx-border-color: rgba(255, 255, 255, 0.20);
-    -fx-border-radius: 16;
-    -fx-border-width: 1;
-    -fx-padding: 9 10 9 10;
-    -fx-min-height: 68;
-    -fx-max-height: 68;
-    -fx-cursor: hand;
-}
-
-.action-card:hover {
-    -fx-border-color: #FF6B00;
-    -fx-effect: dropshadow(gaussian, rgba(255, 107, 0, 0.22), 16, 0.32, 0, 4);
-}
-
-.action-icon-box {
-    -fx-min-width: 38;
-    -fx-min-height: 38;
-    -fx-max-width: 38;
-    -fx-max-height: 38;
-    -fx-background-radius: 11;
-    -fx-border-radius: 11;
-    -fx-border-color: #FF6B00;
-    -fx-border-width: 1.1;
-    -fx-background-color: rgba(255, 107, 0, 0.08);
-}
-
-.action-icon {
-    -fx-text-fill: #FF6B00;
-    -fx-font-size: 17px;
-}
-
-.action-title {
-    -fx-text-fill: white;
-    -fx-font-size: 13px;
-    -fx-font-weight: 900;
-}
-
-.action-subtitle {
-    -fx-text-fill: #A8A8A8;
-    -fx-font-size: 9px;
     -fx-font-weight: bold;
 }
 
-.arrow-text {
-    -fx-text-fill: #FF6B00;
+.avatar-circle {
+    -fx-background-color: linear-gradient(to right, #FF8A3D, #FF3B5C);
+    -fx-background-radius: 50;
+    -fx-min-width: 42;
+    -fx-min-height: 42;
+    -fx-max-width: 42;
+    -fx-max-height: 42;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.5), 12, 0.4, 0, 2);
+}
+
+.avatar-text {
+    -fx-text-fill: white;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
 
-.bottom-nav {
-    -fx-padding: 8 0 0 0;
-    -fx-border-color: #FF6B00 transparent transparent transparent;
-    -fx-border-width: 2 0 0 0;
+/* ---------- BIG RING CARD ---------- */
+.ring-card {
+    -fx-background-color: rgba(255, 255, 255, 0.04);
+    -fx-background-radius: 22;
+    -fx-border-color: rgba(255, 138, 61, 0.25);
+    -fx-border-radius: 22;
+    -fx-border-width: 1.5;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.18), 18, 0.3, 0, 4);
 }
 
-.nav-icon-active {
-    -fx-text-fill: #FF6B00;
+.ring-label {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.ring-big-number {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.ring-target {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 12px;
+}
+
+.ring-remaining {
+    -fx-text-fill: #FF8A3D;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.ring-percent-text {
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
 }
 
+.ring-percent-label {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 9px;
+}
+
+/* ---------- MACRO CARDS ---------- */
+.macro-card {
+    -fx-background-color: rgba(255, 255, 255, 0.04);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 12 10 12 10;
+}
+
+.macro-label {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.macro-value {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.macro-unit {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 11px;
+}
+
+.macro-bar-track {
+    -fx-background-color: #2A2A35;
+    -fx-background-radius: 4;
+    -fx-pref-height: 4;
+    -fx-min-height: 4;
+    -fx-max-height: 4;
+}
+
+.macro-bar-fill {
+    -fx-background-color: linear-gradient(to right, #FF8A3D, #FF3B5C);
+    -fx-background-radius: 4;
+    -fx-pref-height: 4;
+    -fx-min-height: 4;
+    -fx-max-height: 4;
+}
+
+/* ---------- QUICK ACTIONS ---------- */
+.section-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.action-card {
+    -fx-background-color: rgba(255, 255, 255, 0.04);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 14 12 14 12;
+    -fx-cursor: hand;
+}
+
+.action-card:hover {
+    -fx-background-color: rgba(255, 138, 61, 0.08);
+    -fx-border-color: rgba(255, 138, 61, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(255, 75, 75, 0.2), 12, 0.3, 0, 3);
+}
+
+.action-icon {
+    -fx-text-fill: #FF8A3D;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.action-text {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* ---------- BOTTOM NAVIGATION ---------- */
+.bottom-nav {
+    -fx-padding: 10 0 0 0;
+    -fx-border-color: rgba(255, 138, 61, 0.3) transparent transparent transparent;
+    -fx-border-width: 1.5 0 0 0;
+}
+
+.nav-item {
+    -fx-cursor: hand;
+}
+
+.nav-icon-active {
+    -fx-text-fill: #FF8A3D;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
 .nav-text-active {
-    -fx-text-fill: #FF6B00;
-    -fx-font-size: 8px;
-    -fx-font-weight: 900;
+    -fx-text-fill: #FF8A3D;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
 }
 
 .nav-icon {
-    -fx-text-fill: #9A9A9A;
-    -fx-font-size: 19px;
+    -fx-text-fill: #6B6B7A;
+    -fx-font-size: 17px;
 }
 
 .nav-text {
-    -fx-text-fill: #9A9A9A;
-    -fx-font-size: 8px;
-    -fx-font-weight: bold;
+    -fx-text-fill: #6B6B7A;
+    -fx-font-size: 9px;
 }
