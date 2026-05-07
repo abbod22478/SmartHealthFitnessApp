@@ -1,6 +1,11 @@
 package com.health.app.controller;
 
+import com.health.app.AppSession;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import com.health.app.model.User;
+import com.health.app.service.NutritionService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -28,139 +33,183 @@ public class DashboardController {
     @FXML private Region carbsBarFill;
     @FXML private Region fatsBarFill;
 
-    // The maximum width a macro bar can fill (matches the card inner width)
     private static final double MACRO_BAR_MAX_WIDTH = 100;
 
-    // Defaults if no user is loaded yet
     private User currentUser;
-    private double targetCalories = 2520;
-    private double consumedCalories = 1847;
-    private double targetProtein = 180;  // grams
-    private double consumedProtein = 128;
-    private double targetCarbs = 320;
-    private double consumedCarbs = 186;
-    private double targetFats = 70;
-    private double consumedFats = 52;
+
+    private double targetCalories = 0;
+    private double targetProtein = 0;
+    private double targetCarbs = 0;
+    private double targetFats = 0;
+
+    // Later, these will come from meal logs.
+    // For now, they start at 0 because the user has not logged food yet.
+    private double consumedCalories = 0;
+    private double consumedProtein = 0;
+    private double consumedCarbs = 0;
+    private double consumedFats = 0;
+
+    private final NutritionService nutritionService = new NutritionService();
 
     @FXML
     public void initialize() {
-        // Will be called once when the FXML loads
-        applyDefaults();
-        refreshUI();
+        showEmptyDashboard();
     }
-
-    /**
-     * Called from outside (e.g. after onboarding) to provide the logged-in user.
-     */
     public void setUser(User user) {
         this.currentUser = user;
+        AppSession.setCurrentUser(user);
+
         if (user != null) {
-            calculateTargetsFromUser(user);
+            NutritionService.NutritionTargets targets = nutritionService.calculateTargets(user);
+
+            this.targetCalories = targets.getCalories();
+            this.targetProtein = targets.getProtein();
+            this.targetCarbs = targets.getCarbs();
+            this.targetFats = targets.getFats();
+
+            AppSession.setTargetCalories(targetCalories);
+            AppSession.setTargetProtein(targetProtein);
+            AppSession.setTargetCarbs(targetCarbs);
+            AppSession.setTargetFats(targetFats);
+
+            this.consumedCalories = 0;
+            this.consumedProtein = 0;
+            this.consumedCarbs = 0;
+            this.consumedFats = 0;
         }
+
         refreshUI();
     }
 
-    private void applyDefaults() {
-        // Demo defaults so the dashboard looks alive even before connecting a real user
-    }
+    private void showEmptyDashboard() {
+        userNameLabel.setText("Hi, User");
+        avatarLabel.setText("U");
 
-    /**
-     * Mifflin-St Jeor BMR formula + activity multiplier.
-     * This calculates daily calorie target based on user data.
-     */
-    private void calculateTargetsFromUser(User user) {
-        double bmr;
-        if ("Female".equalsIgnoreCase(user.getGender())) {
-            bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getAge() - 161;
-        } else {
-            bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getAge() + 5;
-        }
+        caloriesValueLabel.setText("0");
+        caloriesTargetLabel.setText("daily target");
+        caloriesRemainingLabel.setText("Complete onboarding to calculate your plan");
 
-        // Default to "Lightly active" multiplier (1.375) — can be expanded later
-        double activityMultiplier = 1.375;
-        double tdee = bmr * activityMultiplier;
+        ringPercentLabel.setText("0%");
+        caloriesArc.setLength(0);
+        proteinArc.setLength(0);
 
-        // Adjust for goal
-        String goal = user.getFitnessGoal();
-        if ("Lose weight".equalsIgnoreCase(goal)) {
-            tdee -= 500; // 500 kcal deficit
-        } else if ("Gain muscle".equalsIgnoreCase(goal)) {
-            tdee += 300; // small surplus
-        }
+        proteinValueLabel.setText("0");
+        carbsValueLabel.setText("0");
+        fatsValueLabel.setText("0");
 
-        this.targetCalories = Math.round(tdee);
-
-        // Macros: 30% protein, 45% carbs, 25% fat
-        this.targetProtein = Math.round((tdee * 0.30) / 4);  // 4 kcal per g of protein
-        this.targetCarbs   = Math.round((tdee * 0.45) / 4);  // 4 kcal per g of carbs
-        this.targetFats    = Math.round((tdee * 0.25) / 9);  // 9 kcal per g of fat
-
-        // For demo — assume the user has consumed ~73% of target
-        this.consumedCalories = Math.round(this.targetCalories * 0.73);
-        this.consumedProtein  = Math.round(this.targetProtein * 0.70);
-        this.consumedCarbs    = Math.round(this.targetCarbs   * 0.55);
-        this.consumedFats     = Math.round(this.targetFats    * 0.80);
+        proteinBarFill.setPrefWidth(0);
+        carbsBarFill.setPrefWidth(0);
+        fatsBarFill.setPrefWidth(0);
     }
 
     private void refreshUI() {
-        // Header
-        if (currentUser != null) {
-            userNameLabel.setText("Hi, " + currentUser.getName());
-            avatarLabel.setText(currentUser.getName().substring(0, 1).toUpperCase());
-        } else {
-            userNameLabel.setText("Hi, User");
-            avatarLabel.setText("U");
+        if (currentUser == null) {
+            showEmptyDashboard();
+            return;
         }
 
-        // Big numbers
-        caloriesValueLabel.setText(String.valueOf((int) consumedCalories));
-        caloriesTargetLabel.setText("of " + (int) targetCalories + " kcal");
+        String name = currentUser.getName();
 
-        double remaining = Math.max(0, targetCalories - consumedCalories);
-        caloriesRemainingLabel.setText((int) remaining + " kcal left today");
+        if (name == null || name.trim().isEmpty()) {
+            userNameLabel.setText("Hi, User");
+            avatarLabel.setText("U");
+        } else {
+            userNameLabel.setText("Hi, " + name.trim());
+            avatarLabel.setText(name.substring(0, 1).toUpperCase());
+        }
 
-        // Percent of goal (in center of ring)
-        int percent = (int) Math.round((consumedCalories / targetCalories) * 100);
-        ringPercentLabel.setText(String.valueOf(percent));
+        // Main dashboard number = calculated daily calorie target
+        caloriesValueLabel.setText(String.valueOf((int) targetCalories));
+        caloriesTargetLabel.setText("daily target");
 
-        // Animate the rings (set arc length based on percent)
-        // Outer ring: calories (max -360 = full circle)
-        double caloriesPercent = Math.min(1.0, consumedCalories / targetCalories);
-        caloriesArc.setLength(-360 * caloriesPercent);
+        caloriesRemainingLabel.setText(
+                "Goal: " + safeText(currentUser.getFitnessGoal()) +
+                        " • " + safeText(currentUser.getActivityLevel())
+        );
 
-        // Inner ring: protein
-        double proteinPercent = Math.min(1.0, consumedProtein / targetProtein);
-        proteinArc.setLength(-360 * proteinPercent);
+        // Since meals are not logged yet, progress is 0%.
+        int caloriePercent = calculatePercent(consumedCalories, targetCalories);
+        int proteinPercent = calculatePercent(consumedProtein, targetProtein);
 
-        // Macro cards
-        proteinValueLabel.setText(String.valueOf((int) consumedProtein));
-        carbsValueLabel.setText(String.valueOf((int) consumedCarbs));
-        fatsValueLabel.setText(String.valueOf((int) consumedFats));
+        ringPercentLabel.setText(caloriePercent + "%");
 
-        // Macro progress bars
-        proteinBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH * proteinPercent);
-        carbsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH * Math.min(1.0, consumedCarbs / targetCarbs));
-        fatsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH * Math.min(1.0, consumedFats / targetFats));
+        caloriesArc.setLength(-360.0 * caloriePercent / 100.0);
+        proteinArc.setLength(-360.0 * proteinPercent / 100.0);
+
+        // Macro cards show target macro needs
+        proteinValueLabel.setText(String.valueOf((int) targetProtein));
+        carbsValueLabel.setText(String.valueOf((int) targetCarbs));
+        fatsValueLabel.setText(String.valueOf((int) targetFats));
+
+        // Fill bars fully because these are target values, not consumed values yet.
+        proteinBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH);
+        carbsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH);
+        fatsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH);
+    }
+
+    private int calculatePercent(double consumed, double target) {
+        if (target <= 0) {
+            return 0;
+        }
+
+        double percent = (consumed / target) * 100.0;
+
+        if (percent < 0) {
+            return 0;
+        }
+
+        if (percent > 100) {
+            return 100;
+        }
+
+        return (int) Math.round(percent);
+    }
+
+    private String safeText(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return "Not set";
+        }
+
+        return value.trim();
     }
 
     // ---------- Quick Actions ----------
+
+
     @FXML
     private void openMeals() {
-        System.out.println("Open Meals page (will build next)");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/health/app/view/meals.fxml"));
+            Parent mealsRoot = loader.load();
+
+            MealController mealController = loader.getController();
+            mealController.setTargets(
+                    targetCalories,
+                    targetProtein,
+                    targetCarbs,
+                    targetFats
+            );
+
+            Scene scene = userNameLabel.getScene();
+            scene.setRoot(mealsRoot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void openWorkout() {
-        System.out.println("Open Workout page (will build next)");
+        System.out.println("Open Workout page");
     }
 
     @FXML
     private void openProgress() {
-        System.out.println("Open Progress page (will build next)");
+        System.out.println("Open Progress page");
     }
 
     @FXML
     private void openReminders() {
-        System.out.println("Open Reminders page (will build next)");
+        System.out.println("Open Reminders page");
     }
 }

@@ -101,7 +101,7 @@
 
                 <VBox alignment="CENTER" spacing="0">
                     <Label fx:id="ringPercentLabel" text="73%" styleClass="ring-percent-text"/>
-                    <Label text=" %of goal" styleClass="ring-percent-label"/>
+                    <Label text="logged" styleClass="ring-percent-label"/>
                 </VBox>
 
             </StackPane>

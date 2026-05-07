@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.health.app.controller.AddFoodController"
+           prefWidth="430"
+           prefHeight="760"
+           minWidth="430"
+           minHeight="760"
+           maxWidth="430"
+           maxHeight="760"
+           styleClass="root-pane"
+           stylesheets="/com/health/app/view/dashboard.css">
+
+    <Region styleClass="glow-orb-orange"
+            prefWidth="360"
+            prefHeight="360"
+            maxWidth="360"
+            maxHeight="360"
+            translateX="-150"
+            translateY="-260"/>
+
+    <Region styleClass="glow-orb-red"
+            prefWidth="360"
+            prefHeight="360"
+            maxWidth="360"
+            maxHeight="360"
+            translateX="160"
+            translateY="300"/>
+
+    <VBox spacing="16"
+          alignment="TOP_CENTER"
+          prefWidth="430"
+          prefHeight="760"
+          minWidth="430"
+          minHeight="760"
+          maxWidth="430"
+          maxHeight="760">
+
+        <padding>
+            <Insets top="22" right="20" bottom="14" left="20"/>
+        </padding>
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button text="←"
+                    onAction="#backToMeals"
+                    styleClass="small-back-button"
+                    minWidth="44"
+                    minHeight="44"
+                    maxWidth="44"
+                    maxHeight="44"/>
+
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Nutrition" styleClass="welcome-label"/>
+                <Label text="Add food" styleClass="user-name"/>
+            </VBox>
+        </HBox>
+
+        <!-- Food selection card -->
+        <VBox styleClass="ring-card" spacing="14">
+
+            <Label text="SELECT FOOD" styleClass="ring-label"/>
+
+            <VBox spacing="7">
+                <Label text="Food item from database" styleClass="macro-label"/>
+
+                <ComboBox fx:id="foodItemBox"
+                          promptText="Choose food item"
+                          styleClass="input-field"
+                          maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="7">
+                <Label text="Meal type" styleClass="macro-label"/>
+
+                <ComboBox fx:id="mealTypeBox"
+                          promptText="Select meal"
+                          styleClass="input-field"
+                          maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="7">
+                <Label text="Quantity in grams" styleClass="macro-label"/>
+
+                <TextField fx:id="quantityField"
+                           promptText="e.g. 150"
+                           styleClass="input-field"/>
+            </VBox>
+
+        </VBox>
+
+        <!-- Calculated nutrition card -->
+        <VBox styleClass="ring-card" spacing="14">
+
+            <Label text="CALCULATED NUTRITION" styleClass="ring-label"/>
+
+            <HBox spacing="8">
+
+                <VBox styleClass="macro-card"
+                      spacing="4"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity">
+                    <Label text="CALORIES" styleClass="macro-label"/>
+
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="calculatedCaloriesLabel"
+                               text="0"
+                               styleClass="macro-value"/>
+                        <Label text="kcal" styleClass="macro-unit"/>
+                    </HBox>
+                </VBox>
+
+                <VBox styleClass="macro-card"
+                      spacing="4"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity">
+                    <Label text="PROTEIN" styleClass="macro-label"/>
+
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="calculatedProteinLabel"
+                               text="0"
+                               styleClass="macro-value"/>
+                        <Label text="g" styleClass="macro-unit"/>
+                    </HBox>
+                </VBox>
+
+            </HBox>
+
+            <HBox spacing="8">
+
+                <VBox styleClass="macro-card"
+                      spacing="4"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity">
+                    <Label text="CARBS" styleClass="macro-label"/>
+
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="calculatedCarbsLabel"
+                               text="0"
+                               styleClass="macro-value"/>
+                        <Label text="g" styleClass="macro-unit"/>
+                    </HBox>
+                </VBox>
+
+                <VBox styleClass="macro-card"
+                      spacing="4"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity">
+                    <Label text="FATS" styleClass="macro-label"/>
+
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="calculatedFatsLabel"
+                               text="0"
+                               styleClass="macro-value"/>
+                        <Label text="g" styleClass="macro-unit"/>
+                    </HBox>
+                </VBox>
+
+            </HBox>
+
+        </VBox>
+
+        <Label fx:id="messageLabel"
+               text=""
+               styleClass="ring-remaining"
+               wrapText="true"
+               maxWidth="Infinity"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Button text="Save meal log"
+                onAction="#saveFood"
+                styleClass="next-button"
+                maxWidth="Infinity"
+                prefHeight="56"/>
+
+    </VBox>
+
+</StackPane>

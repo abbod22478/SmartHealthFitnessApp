@@ -10,6 +10,11 @@ public class User {
     private double weight;
     private String credentials;
     private String fitnessGoal;
+    private double targetWeight;
+    private String activityLevel;
+    private String weeklyGoal;
+    private String foodPreference;
+    private String mealPlanChoice;
 
     // Empty Constructor
     public User() {
@@ -92,5 +97,45 @@ public class User {
 
     public void setFitnessGoal(String fitnessGoal) {
         this.fitnessGoal = fitnessGoal;
+    }
+
+    public double getTargetWeight() {
+        return targetWeight;
+    }
+
+    public void setTargetWeight(double targetWeight) {
+        this.targetWeight = targetWeight;
+    }
+
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(String activityLevel) {
+        this.activityLevel = activityLevel;
+    }
+
+    public String getWeeklyGoal() {
+        return weeklyGoal;
+    }
+
+    public void setWeeklyGoal(String weeklyGoal) {
+        this.weeklyGoal = weeklyGoal;
+    }
+
+    public String getFoodPreference() {
+        return foodPreference;
+    }
+
+    public void setFoodPreference(String foodPreference) {
+        this.foodPreference = foodPreference;
+    }
+
+    public String getMealPlanChoice() {
+        return mealPlanChoice;
+    }
+
+    public void setMealPlanChoice(String mealPlanChoice) {
+        this.mealPlanChoice = mealPlanChoice;
     }
 }

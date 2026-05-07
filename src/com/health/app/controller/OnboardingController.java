@@ -333,8 +333,13 @@ public class OnboardingController {
         user.setGender(data.getGender() == null ? "Male" : data.getGender());
         user.setHeight(data.getHeight());
         user.setWeight(data.getCurrentWeight());
+        user.setTargetWeight(data.getTargetWeight());
         user.setCredentials(data.getEmail());
         user.setFitnessGoal(data.getGoal() == null ? "Improve fitness" : data.getGoal());
+        user.setActivityLevel(data.getActivityLevel());
+        user.setWeeklyGoal(data.getWeeklyGoal());
+        user.setFoodPreference(data.getFoodPreference());
+        user.setMealPlanChoice(data.getMealPlanChoice());
 
         boolean created = new UserService().createAccount(user, data.getPassword());
 
