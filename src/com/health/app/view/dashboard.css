@@ -438,3 +438,125 @@
                           rgba(255, 59, 92, 0.0) 70%);
     -fx-background-radius: 200;
 }
+/* ---------- ADD FOOD PAGE ---------- */
+.food-combo-box {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 138, 61, 0.18);
+    -fx-border-radius: 14;
+    -fx-border-width: 1.5;
+    -fx-padding: 0;
+    -fx-min-height: 48;
+}
+
+.food-combo-box .list-cell {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: transparent;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 14px;
+}
+
+.food-combo-box .arrow,
+.food-combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.food-combo-box .arrow {
+    -fx-background-color: #FF6B3D;
+    -fx-shape: "M0 0 L8 0 L4 5 Z";
+    -fx-padding: 4 6 4 6;
+}
+
+.food-combo-box:focused {
+    -fx-border-color: #FF6B3D;
+    -fx-effect: dropshadow(gaussian, rgba(255, 107, 61, 0.35), 16, 0.3, 0, 3);
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1A1A22;
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 138, 61, 0.25);
+    -fx-border-radius: 14;
+    -fx-border-width: 1.2;
+    -fx-padding: 6;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+}
+
+.combo-box-popup .list-view .list-cell:hover,
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: rgba(255, 138, 61, 0.15);
+    -fx-text-fill: #FFFFFF;
+}
+
+.food-input {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 138, 61, 0.18);
+    -fx-border-radius: 14;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #6B6B7A;
+    -fx-font-size: 14px;
+    -fx-padding: 14 16 14 16;
+}
+
+.food-input:focused {
+    -fx-border-color: #FF6B3D;
+    -fx-effect: dropshadow(gaussian, rgba(255, 107, 61, 0.35), 16, 0.3, 0, 3);
+}
+
+.calc-card {
+    -fx-background-color: rgba(255, 255, 255, 0.04);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 12;
+}
+
+.calc-label {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.calc-value {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.calc-unit {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 12px;
+}
+
+.food-section-label {
+    -fx-text-fill: #9A9AA8;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.food-message {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.percent-ring {
+    -fx-min-width: 110;
+    -fx-min-height: 110;
+    -fx-max-width: 110;
+    -fx-max-height: 110;
+    -fx-background-color: rgba(255, 255, 255, 0.03);
+    -fx-background-radius: 100;
+    -fx-border-color: #FF8A3D;
+    -fx-border-radius: 100;
+    -fx-border-width: 8;
+    -fx-effect: dropshadow(gaussian, rgba(255, 138, 61, 0.35), 16, 0.3, 0, 3);
+}

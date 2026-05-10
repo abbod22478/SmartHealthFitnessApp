@@ -14,7 +14,7 @@ public class FoodItemDAO {
     public List<FoodItem> getAllFoodItems() {
         List<FoodItem> foodItems = new ArrayList<>();
 
-        String sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, carbs_per_100g, fat_per_100g " +
+        String sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, carbs_per_100g, fats_per_100g " +
                 "FROM food_items " +
                 "ORDER BY name";
 
@@ -29,7 +29,7 @@ public class FoodItemDAO {
                         rs.getDouble("calories_per_100g"),
                         rs.getDouble("protein_per_100g"),
                         rs.getDouble("carbs_per_100g"),
-                        rs.getDouble("fat_per_100g")
+                        rs.getDouble("fats_per_100g")
                 );
 
                 foodItems.add(foodItem);
@@ -43,7 +43,7 @@ public class FoodItemDAO {
     }
 
     public FoodItem getFoodItemById(int foodId) {
-        String sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, carbs_per_100g, fat_per_100g " +
+        String sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, carbs_per_100g, fats_per_100g " +
                 "FROM food_items " +
                 "WHERE food_id = ?";
 
@@ -61,7 +61,7 @@ public class FoodItemDAO {
                         rs.getDouble("calories_per_100g"),
                         rs.getDouble("protein_per_100g"),
                         rs.getDouble("carbs_per_100g"),
-                        rs.getDouble("fat_per_100g")
+                        rs.getDouble("fats_per_100g")
                 );
             }
 

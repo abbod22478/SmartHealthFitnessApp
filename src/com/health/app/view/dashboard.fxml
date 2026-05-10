@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
@@ -14,32 +13,24 @@
            minHeight="760"
            maxWidth="430"
            maxHeight="760"
-           styleClass="root-pane">
+           styleClass="root-pane"
+           stylesheets="/com/health/app/view/dashboard.css">
 
     <Region styleClass="glow-orb-orange"
-            prefWidth="380"
-            prefHeight="380"
-            maxWidth="380"
-            maxHeight="380"
-            translateX="-140"
-            translateY="-260"/>
+            prefWidth="380" prefHeight="380"
+            maxWidth="380" maxHeight="380"
+            translateX="-140" translateY="-260"/>
 
     <Region styleClass="glow-orb-red"
-            prefWidth="360"
-            prefHeight="360"
-            maxWidth="360"
-            maxHeight="360"
-            translateX="160"
-            translateY="280"/>
+            prefWidth="360" prefHeight="360"
+            maxWidth="360" maxHeight="360"
+            translateX="160" translateY="280"/>
 
     <VBox spacing="14"
           alignment="TOP_CENTER"
-          prefWidth="430"
-          prefHeight="760"
-          minWidth="430"
-          minHeight="760"
-          maxWidth="430"
-          maxHeight="760">
+          prefWidth="430" prefHeight="760"
+          minWidth="430" minHeight="760"
+          maxWidth="430" maxHeight="760">
 
         <padding>
             <Insets top="22" right="20" bottom="14" left="20"/>
@@ -50,134 +41,68 @@
                 <Label text="Welcome back" styleClass="welcome-label"/>
                 <Label fx:id="userNameLabel" text="Hi, User" styleClass="user-name"/>
             </VBox>
-
             <StackPane styleClass="avatar-circle">
                 <Label fx:id="avatarLabel" text="U" styleClass="avatar-text"/>
             </StackPane>
         </HBox>
 
         <HBox styleClass="ring-card" alignment="CENTER_LEFT" spacing="14">
-
-            <StackPane prefWidth="130"
-                       prefHeight="130"
-                       minWidth="130"
-                       minHeight="130"
-                       maxWidth="130"
-                       maxHeight="130">
-
-                <Circle radius="58"
-                        fill="transparent"
-                        stroke="#2A2A35"
-                        strokeWidth="9"/>
-
-                <Arc fx:id="caloriesArc"
-                     radiusX="58"
-                     radiusY="58"
-                     startAngle="90"
-                     length="-263"
-                     fill="transparent"
-                     strokeType="OUTSIDE"
-                     strokeWidth="9"
-                     strokeLineCap="ROUND"
-                     stroke="#FF8A3D"
-                     type="OPEN"/>
-
-                <Circle radius="42"
-                        fill="transparent"
-                        stroke="#2A2A35"
-                        strokeWidth="7"/>
-
-                <Arc fx:id="proteinArc"
-                     radiusX="42"
-                     radiusY="42"
-                     startAngle="90"
-                     length="-180"
-                     fill="transparent"
-                     strokeType="OUTSIDE"
-                     strokeWidth="7"
-                     strokeLineCap="ROUND"
-                     stroke="#FF3B5C"
-                     type="OPEN"/>
-
-                <VBox alignment="CENTER" spacing="0">
-                    <Label fx:id="ringPercentLabel" text="73%" styleClass="ring-percent-text"/>
-                    <Label text="logged" styleClass="ring-percent-label"/>
-                </VBox>
-
+            <StackPane prefWidth="130" prefHeight="130"
+                       minWidth="130" minHeight="130"
+                       maxWidth="130" maxHeight="130">
+                <StackPane styleClass="percent-ring">
+                    <VBox alignment="CENTER" spacing="0">
+                        <Label fx:id="ringPercentLabel" text="0%" styleClass="ring-percent-text"/>
+                        <Label text="logged" styleClass="ring-percent-label"/>
+                    </VBox>
+                </StackPane>
             </StackPane>
 
             <VBox spacing="2" HBox.hgrow="ALWAYS">
                 <Label text="DAILY CALORIES" styleClass="ring-label"/>
                 <Label fx:id="caloriesValueLabel" text="0" styleClass="ring-big-number"/>
                 <Label fx:id="caloriesTargetLabel" text="of 0 kcal" styleClass="ring-target"/>
-
-                <Label fx:id="caloriesRemainingLabel"
-                       text="0 left today"
-                       styleClass="ring-remaining">
+                <Label fx:id="caloriesRemainingLabel" text="0 left today" styleClass="ring-remaining">
                     <padding>
                         <Insets top="4"/>
                     </padding>
                 </Label>
             </VBox>
-
         </HBox>
 
         <HBox spacing="8">
-
-            <VBox styleClass="macro-card"
-                  spacing="4"
-                  HBox.hgrow="ALWAYS"
-                  maxWidth="Infinity">
+            <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
                 <Label text="PROTEIN" styleClass="macro-label"/>
-
                 <HBox alignment="BASELINE_LEFT" spacing="2">
                     <Label fx:id="proteinValueLabel" text="0" styleClass="macro-value"/>
                     <Label text="g" styleClass="macro-unit"/>
                 </HBox>
-
                 <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
-                    <Region fx:id="proteinBarFill"
-                            styleClass="macro-bar-fill"
-                            prefWidth="0"/>
+                    <Region fx:id="proteinBarFill" styleClass="macro-bar-fill" prefWidth="0"/>
                 </StackPane>
             </VBox>
 
-            <VBox styleClass="macro-card"
-                  spacing="4"
-                  HBox.hgrow="ALWAYS"
-                  maxWidth="Infinity">
+            <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
                 <Label text="CARBS" styleClass="macro-label"/>
-
                 <HBox alignment="BASELINE_LEFT" spacing="2">
                     <Label fx:id="carbsValueLabel" text="0" styleClass="macro-value"/>
                     <Label text="g" styleClass="macro-unit"/>
                 </HBox>
-
                 <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
-                    <Region fx:id="carbsBarFill"
-                            styleClass="macro-bar-fill"
-                            prefWidth="0"/>
+                    <Region fx:id="carbsBarFill" styleClass="macro-bar-fill" prefWidth="0"/>
                 </StackPane>
             </VBox>
 
-            <VBox styleClass="macro-card"
-                  spacing="4"
-                  HBox.hgrow="ALWAYS"
-                  maxWidth="Infinity">
+            <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
                 <Label text="FATS" styleClass="macro-label"/>
-
                 <HBox alignment="BASELINE_LEFT" spacing="2">
                     <Label fx:id="fatsValueLabel" text="0" styleClass="macro-value"/>
                     <Label text="g" styleClass="macro-unit"/>
                 </HBox>
-
                 <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
-                    <Region fx:id="fatsBarFill"
-                            styleClass="macro-bar-fill"
-                            prefWidth="0"/>
+                    <Region fx:id="fatsBarFill" styleClass="macro-bar-fill" prefWidth="0"/>
                 </StackPane>
             </VBox>
-
         </HBox>
 
         <Label text="Quick actions" styleClass="section-title">
@@ -192,42 +117,30 @@
                 <ColumnConstraints percentWidth="50"/>
             </columnConstraints>
 
-            <HBox styleClass="action-card"
-                  alignment="CENTER_LEFT"
-                  spacing="10"
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10"
                   onMouseClicked="#openMeals"
-                  GridPane.columnIndex="0"
-                  GridPane.rowIndex="0">
+                  GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label text="+" styleClass="action-icon"/>
                 <Label text="Log meal" styleClass="action-text"/>
             </HBox>
 
-            <HBox styleClass="action-card"
-                  alignment="CENTER_LEFT"
-                  spacing="10"
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10"
                   onMouseClicked="#openWorkout"
-                  GridPane.columnIndex="1"
-                  GridPane.rowIndex="0">
+                  GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <Label text="▶" styleClass="action-icon"/>
                 <Label text="Workout" styleClass="action-text"/>
             </HBox>
 
-            <HBox styleClass="action-card"
-                  alignment="CENTER_LEFT"
-                  spacing="10"
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10"
                   onMouseClicked="#openProgress"
-                  GridPane.columnIndex="0"
-                  GridPane.rowIndex="1">
+                  GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <Label text="↑" styleClass="action-icon"/>
                 <Label text="Progress" styleClass="action-text"/>
             </HBox>
 
-            <HBox styleClass="action-card"
-                  alignment="CENTER_LEFT"
-                  spacing="10"
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10"
                   onMouseClicked="#openReminders"
-                  GridPane.columnIndex="1"
-                  GridPane.rowIndex="1">
+                  GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <Label text="◉" styleClass="action-icon"/>
                 <Label text="Reminders" styleClass="action-text"/>
             </HBox>
@@ -236,44 +149,26 @@
         <Region VBox.vgrow="ALWAYS"/>
 
         <HBox styleClass="bottom-nav" alignment="CENTER" spacing="0">
-
-            <VBox styleClass="nav-item"
-                  alignment="CENTER"
-                  spacing="2"
-                  HBox.hgrow="ALWAYS">
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
                 <Label text="⌂" styleClass="nav-icon-active"/>
                 <Label text="HOME" styleClass="nav-text-active"/>
             </VBox>
-
-            <VBox styleClass="nav-item"
-                  alignment="CENTER"
-                  spacing="2"
-                  HBox.hgrow="ALWAYS"
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS"
                   onMouseClicked="#openMeals">
                 <Label text="🍴" styleClass="nav-icon"/>
                 <Label text="MEALS" styleClass="nav-text"/>
             </VBox>
-
-            <VBox styleClass="nav-item"
-                  alignment="CENTER"
-                  spacing="2"
-                  HBox.hgrow="ALWAYS"
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS"
                   onMouseClicked="#openWorkout">
                 <Label text="▣" styleClass="nav-icon"/>
                 <Label text="WORKOUT" styleClass="nav-text"/>
             </VBox>
-
-            <VBox styleClass="nav-item"
-                  alignment="CENTER"
-                  spacing="2"
-                  HBox.hgrow="ALWAYS"
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS"
                   onMouseClicked="#openProgress">
                 <Label text="↑" styleClass="nav-icon"/>
                 <Label text="PROGRESS" styleClass="nav-text"/>
             </VBox>
-
         </HBox>
 
     </VBox>
-
 </StackPane>

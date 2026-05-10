@@ -9,6 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 public class MealController {
+    @FXML private Label breakfastCalLabel;
+    @FXML private Label lunchCalLabel;
+    @FXML private Label dinnerCalLabel;
+    @FXML private Label snackCalLabel;
+
+    @FXML private Label breakfastSubLabel;
+    @FXML private Label lunchSubLabel;
+    @FXML private Label dinnerSubLabel;
+    @FXML private Label snackSubLabel;
 
     @FXML private Label loggedCaloriesLabel;
     @FXML private Label targetCaloriesLabel;
@@ -37,15 +46,46 @@ public class MealController {
     @FXML
     public void initialize() {
         loadTargetsFromSession();
+        loadTodayTotals();
         refreshUI();
     }
-    public void setTargets(double calories, double protein, double carbs, double fats) {
-        this.targetCalories = calories;
-        this.targetProtein = protein;
-        this.targetCarbs = carbs;
-        this.targetFats = fats;
 
-        refreshUI();
+    private void loadTodayTotals() {
+        com.health.app.dao.MealDAO mealDAO = new com.health.app.dao.MealDAO();
+
+        int userId = 0;
+        if (com.health.app.AppSession.getCurrentUser() != null) {
+            userId = com.health.app.AppSession.getCurrentUser().getUserId();
+        }
+
+        double[] totals = mealDAO.getTodayTotals(userId);
+
+        this.loggedCalories = totals[0];
+        this.loggedProtein = totals[1];
+        this.loggedCarbs = totals[2];
+        this.loggedFats = totals[3];
+
+        double breakfastCal = mealDAO.getMealTypeCalories(userId, "Breakfast");
+        double lunchCal = mealDAO.getMealTypeCalories(userId, "Lunch");
+        double dinnerCal = mealDAO.getMealTypeCalories(userId, "Dinner");
+        double snackCal = mealDAO.getMealTypeCalories(userId, "Snack");
+
+        if (breakfastCalLabel != null) {
+            breakfastCalLabel.setText((int) breakfastCal + " kcal");
+            breakfastSubLabel.setText(breakfastCal > 0 ? "Food logged" : "No food logged yet");
+        }
+        if (lunchCalLabel != null) {
+            lunchCalLabel.setText((int) lunchCal + " kcal");
+            lunchSubLabel.setText(lunchCal > 0 ? "Food logged" : "No food logged yet");
+        }
+        if (dinnerCalLabel != null) {
+            dinnerCalLabel.setText((int) dinnerCal + " kcal");
+            dinnerSubLabel.setText(dinnerCal > 0 ? "Food logged" : "No food logged yet");
+        }
+        if (snackCalLabel != null) {
+            snackCalLabel.setText((int) snackCal + " kcal");
+            snackSubLabel.setText(snackCal > 0 ? "Food logged" : "No food logged yet");
+        }
     }
 
     private void refreshUI() {

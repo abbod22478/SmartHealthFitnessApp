@@ -26,4 +26,7 @@ public class UserService {
     public void updateFitnessGoal(int userId, String newGoal) {
         // Will implement after updateFitnessGoal() in UserDAO.
     }
+    public User login(String email, String password) {
+        return userDAO.getUserByEmailAndPassword(email, password);
+    }
 }

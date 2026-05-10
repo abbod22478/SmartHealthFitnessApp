@@ -1,31 +1,26 @@
 package com.health.app.controller;
 
 import com.health.app.AppSession;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import com.health.app.dao.MealDAO;
 import com.health.app.model.User;
 import com.health.app.service.NutritionService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Arc;
 
 public class DashboardController {
 
-    // Header
     @FXML private Label userNameLabel;
     @FXML private Label avatarLabel;
 
-    // Calorie ring card
-    @FXML private Arc caloriesArc;
-    @FXML private Arc proteinArc;
     @FXML private Label ringPercentLabel;
     @FXML private Label caloriesValueLabel;
     @FXML private Label caloriesTargetLabel;
     @FXML private Label caloriesRemainingLabel;
 
-    // Macro cards
     @FXML private Label proteinValueLabel;
     @FXML private Label carbsValueLabel;
     @FXML private Label fatsValueLabel;
@@ -42,8 +37,6 @@ public class DashboardController {
     private double targetCarbs = 0;
     private double targetFats = 0;
 
-    // Later, these will come from meal logs.
-    // For now, they start at 0 because the user has not logged food yet.
     private double consumedCalories = 0;
     private double consumedProtein = 0;
     private double consumedCarbs = 0;
@@ -55,6 +48,7 @@ public class DashboardController {
     public void initialize() {
         showEmptyDashboard();
     }
+
     public void setUser(User user) {
         this.currentUser = user;
         AppSession.setCurrentUser(user);
@@ -72,10 +66,12 @@ public class DashboardController {
             AppSession.setTargetCarbs(targetCarbs);
             AppSession.setTargetFats(targetFats);
 
-            this.consumedCalories = 0;
-            this.consumedProtein = 0;
-            this.consumedCarbs = 0;
-            this.consumedFats = 0;
+            MealDAO mealDAO = new MealDAO();
+            double[] totals = mealDAO.getTodayTotals(user.getUserId());
+            this.consumedCalories = totals[0];
+            this.consumedProtein = totals[1];
+            this.consumedCarbs = totals[2];
+            this.consumedFats = totals[3];
         }
 
         refreshUI();
@@ -90,8 +86,6 @@ public class DashboardController {
         caloriesRemainingLabel.setText("Complete onboarding to calculate your plan");
 
         ringPercentLabel.setText("0%");
-        caloriesArc.setLength(0);
-        proteinArc.setLength(0);
 
         proteinValueLabel.setText("0");
         carbsValueLabel.setText("0");
@@ -118,81 +112,53 @@ public class DashboardController {
             avatarLabel.setText(name.substring(0, 1).toUpperCase());
         }
 
-        // Main dashboard number = calculated daily calorie target
-        caloriesValueLabel.setText(String.valueOf((int) targetCalories));
-        caloriesTargetLabel.setText("daily target");
+        caloriesValueLabel.setText(String.valueOf((int) consumedCalories));
+        caloriesTargetLabel.setText("of " + (int) targetCalories + " kcal");
+
+        double remaining = Math.max(0, targetCalories - consumedCalories);
+        caloriesRemainingLabel.setText((int) remaining + " kcal remaining today");
 
         caloriesRemainingLabel.setText(
                 "Goal: " + safeText(currentUser.getFitnessGoal()) +
                         " • " + safeText(currentUser.getActivityLevel())
         );
 
-        // Since meals are not logged yet, progress is 0%.
         int caloriePercent = calculatePercent(consumedCalories, targetCalories);
-        int proteinPercent = calculatePercent(consumedProtein, targetProtein);
-
         ringPercentLabel.setText(caloriePercent + "%");
 
-        caloriesArc.setLength(-360.0 * caloriePercent / 100.0);
-        proteinArc.setLength(-360.0 * proteinPercent / 100.0);
-
-        // Macro cards show target macro needs
         proteinValueLabel.setText(String.valueOf((int) targetProtein));
         carbsValueLabel.setText(String.valueOf((int) targetCarbs));
         fatsValueLabel.setText(String.valueOf((int) targetFats));
 
-        // Fill bars fully because these are target values, not consumed values yet.
-        proteinBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH);
-        carbsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH);
-        fatsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH);
+        double proteinPercent = Math.min(1.0, consumedProtein / Math.max(1, targetProtein));
+        double carbsPercent = Math.min(1.0, consumedCarbs / Math.max(1, targetCarbs));
+        double fatsPercent = Math.min(1.0, consumedFats / Math.max(1, targetFats));
+
+        proteinBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH * proteinPercent);
+        carbsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH * carbsPercent);
+        fatsBarFill.setPrefWidth(MACRO_BAR_MAX_WIDTH * fatsPercent);
     }
 
     private int calculatePercent(double consumed, double target) {
-        if (target <= 0) {
-            return 0;
-        }
-
+        if (target <= 0) return 0;
         double percent = (consumed / target) * 100.0;
-
-        if (percent < 0) {
-            return 0;
-        }
-
-        if (percent > 100) {
-            return 100;
-        }
-
+        if (percent < 0) return 0;
+        if (percent > 100) return 100;
         return (int) Math.round(percent);
     }
 
     private String safeText(String value) {
-        if (value == null || value.trim().isEmpty()) {
-            return "Not set";
-        }
-
+        if (value == null || value.trim().isEmpty()) return "Not set";
         return value.trim();
     }
-
-    // ---------- Quick Actions ----------
-
 
     @FXML
     private void openMeals() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/health/app/view/meals.fxml"));
             Parent mealsRoot = loader.load();
-
-            MealController mealController = loader.getController();
-            mealController.setTargets(
-                    targetCalories,
-                    targetProtein,
-                    targetCarbs,
-                    targetFats
-            );
-
             Scene scene = userNameLabel.getScene();
             scene.setRoot(mealsRoot);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

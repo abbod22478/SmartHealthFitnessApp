@@ -145,20 +145,34 @@ public class AddFoodController {
 
             calculateNutrition();
 
-            System.out.println("===== FOOD LOG PREVIEW =====");
-            System.out.println("Food: " + selectedFood.getName());
-            System.out.println("Meal type: " + mealType);
-            System.out.println("Quantity: " + grams + "g");
-            System.out.println("Calories: " + calculatedCalories);
-            System.out.println("Protein: " + calculatedProtein);
-            System.out.println("Carbs: " + calculatedCarbs);
-            System.out.println("Fats: " + calculatedFats);
-            System.out.println("============================");
+            com.health.app.dao.MealDAO mealDAO = new com.health.app.dao.MealDAO();
+            int userId = 0;
+            if (com.health.app.AppSession.getCurrentUser() != null) {
+                userId = com.health.app.AppSession.getCurrentUser().getUserId();
+            }
+            boolean saved = mealDAO.saveMealLog(
+                    userId,
+                    selectedFood.getFoodId(),
+                    mealType,
+                    grams,
+                    calculatedCalories,
+                    calculatedProtein,
+                    calculatedCarbs,
+                    calculatedFats
+            );
 
-            showMessage("Food calculated successfully. Database saving is next.", false);
+            if (saved) {
+                showMessage("Saved! " + selectedFood.getName() + " (" + (int) grams + "g) logged.", false);
+                foodItemBox.setValue(null);
+                mealTypeBox.setValue(null);
+                quantityField.clear();
+                clearCalculatedValues();
+            } else {
+                showMessage("Failed to save. Check database.", true);
+            }
 
         } catch (NumberFormatException e) {
-            showMessage("Please enter a valid quantity in grams.", true);
+            showMessage("Please enter a valid quantity.", true);
         }
     }
 

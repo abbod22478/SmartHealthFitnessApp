@@ -68,4 +68,39 @@ public class UserDAO {
 
         return null;
     }
+    public User getUserByEmailAndPassword(String email, String password) {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                User user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("gender"),
+                        rs.getDouble("height"),
+                        rs.getDouble("weight"),
+                        rs.getString("email"),
+                        rs.getString("goal")
+                );
+                user.setTargetWeight(rs.getDouble("target_weight"));
+                user.setActivityLevel(rs.getString("activity_level"));
+                user.setWeeklyGoal(rs.getString("weekly_goal"));
+                user.setFoodPreference(rs.getString("food_preference"));
+                user.setMealPlanChoice(rs.getString("meal_plan_choice"));
+                return user;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
