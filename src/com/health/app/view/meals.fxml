@@ -26,151 +26,175 @@
             maxWidth="360" maxHeight="360"
             translateX="160" translateY="300"/>
 
-    <VBox spacing="14"
+    <VBox spacing="0"
           alignment="TOP_CENTER"
           prefWidth="430" prefHeight="760"
           minWidth="430" minHeight="760"
           maxWidth="430" maxHeight="760">
 
-        <padding>
-            <Insets top="22" right="20" bottom="14" left="20"/>
-        </padding>
+        <!-- Fixed header -->
+        <VBox spacing="14">
+            <padding>
+                <Insets top="22" right="20" bottom="0" left="20"/>
+            </padding>
 
-        <!-- Header -->
-        <HBox alignment="CENTER_LEFT" spacing="12">
-            <Button text="←"
-                    onAction="#backToDashboard"
-                    styleClass="small-back-button"
-                    minWidth="44" minHeight="44"
-                    maxWidth="44" maxHeight="44"/>
-            <VBox spacing="2" HBox.hgrow="ALWAYS">
-                <Label text="Nutrition" styleClass="welcome-label"/>
-                <Label text="Today's meals" styleClass="user-name"/>
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Button text="←"
+                        onAction="#backToDashboard"
+                        styleClass="small-back-button"
+                        minWidth="44" minHeight="44"
+                        maxWidth="44" maxHeight="44"/>
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label text="Nutrition" styleClass="welcome-label"/>
+                    <Label text="Today's meals" styleClass="user-name"/>
+                </VBox>
+            </HBox>
+
+            <VBox styleClass="ring-card" spacing="12">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="4">
+                        <Label text="CALORIES LOGGED" styleClass="ring-label"/>
+                        <HBox alignment="BOTTOM_LEFT" spacing="6">
+                            <Label fx:id="loggedCaloriesLabel" text="0" styleClass="ring-big-number"/>
+                            <Label fx:id="targetCaloriesLabel" text="/ 2852 kcal" styleClass="ring-target"/>
+                        </HBox>
+                        <Label fx:id="remainingCaloriesLabel" text="2852 kcal remaining today" styleClass="ring-remaining"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <VBox alignment="CENTER" spacing="2" styleClass="mini-percent-card">
+                        <Label fx:id="mealPercentLabel" text="0%" styleClass="ring-percent-text"/>
+                        <Label text="logged" styleClass="ring-percent-label"/>
+                    </VBox>
+                </HBox>
+                <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
+                    <Region fx:id="calorieProgressFill" styleClass="macro-bar-fill" prefWidth="0"/>
+                </StackPane>
             </VBox>
-        </HBox>
 
-        <!-- Summary card -->
-        <VBox styleClass="ring-card" spacing="12">
-            <HBox alignment="CENTER_LEFT">
-                <VBox spacing="4">
-                    <Label text="CALORIES LOGGED" styleClass="ring-label"/>
-                    <HBox alignment="BOTTOM_LEFT" spacing="6">
-                        <Label fx:id="loggedCaloriesLabel" text="0" styleClass="ring-big-number"/>
-                        <Label fx:id="targetCaloriesLabel" text="/ 2852 kcal" styleClass="ring-target"/>
+            <HBox spacing="8">
+                <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                    <Label text="PROTEIN" styleClass="macro-label"/>
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="loggedProteinLabel" text="0" styleClass="macro-value"/>
+                        <Label fx:id="targetProteinLabel" text="/ 132g" styleClass="macro-unit"/>
                     </HBox>
-                    <Label fx:id="remainingCaloriesLabel" text="2852 kcal remaining today" styleClass="ring-remaining"/>
                 </VBox>
-                <Region HBox.hgrow="ALWAYS"/>
-                <VBox alignment="CENTER" spacing="2" styleClass="mini-percent-card">
-                    <Label fx:id="mealPercentLabel" text="0%" styleClass="ring-percent-text"/>
-                    <Label text="logged" styleClass="ring-percent-label"/>
+                <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                    <Label text="CARBS" styleClass="macro-label"/>
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="loggedCarbsLabel" text="0" styleClass="macro-value"/>
+                        <Label fx:id="targetCarbsLabel" text="/ 403g" styleClass="macro-unit"/>
+                    </HBox>
+                </VBox>
+                <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                    <Label text="FATS" styleClass="macro-label"/>
+                    <HBox alignment="BASELINE_LEFT" spacing="2">
+                        <Label fx:id="loggedFatsLabel" text="0" styleClass="macro-value"/>
+                        <Label fx:id="targetFatsLabel" text="/ 79g" styleClass="macro-unit"/>
+                    </HBox>
                 </VBox>
             </HBox>
-            <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
-                <Region fx:id="calorieProgressFill" styleClass="macro-bar-fill" prefWidth="0"/>
-            </StackPane>
+
+            <Button text="+ Add food"
+                    onAction="#openAddFood"
+                    styleClass="next-button"
+                    maxWidth="Infinity"
+                    prefHeight="54"/>
         </VBox>
 
-        <!-- Macro summary -->
-        <HBox spacing="8">
-            <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
-                <Label text="PROTEIN" styleClass="macro-label"/>
-                <HBox alignment="BASELINE_LEFT" spacing="2">
-                    <Label fx:id="loggedProteinLabel" text="0" styleClass="macro-value"/>
-                    <Label fx:id="targetProteinLabel" text="/ 132g" styleClass="macro-unit"/>
+        <!-- SCROLLABLE section -->
+        <ScrollPane styleClass="transparent-scroll"
+                    fitToWidth="true"
+                    VBox.vgrow="ALWAYS"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="AS_NEEDED">
+
+            <VBox spacing="14">
+                <padding>
+                    <Insets top="14" right="20" bottom="14" left="20"/>
+                </padding>
+
+                <Label text="Meal sections" styleClass="section-title"/>
+
+                <VBox spacing="10">
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Breakfast" styleClass="action-text"/>
+                            <Label fx:id="breakfastSubLabel" text="No food logged yet" styleClass="ring-target"/>
+                        </VBox>
+                        <Label fx:id="breakfastCalLabel" text="0 kcal" styleClass="action-icon"/>
+                    </HBox>
+
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Lunch" styleClass="action-text"/>
+                            <Label fx:id="lunchSubLabel" text="No food logged yet" styleClass="ring-target"/>
+                        </VBox>
+                        <Label fx:id="lunchCalLabel" text="0 kcal" styleClass="action-icon"/>
+                    </HBox>
+
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Dinner" styleClass="action-text"/>
+                            <Label fx:id="dinnerSubLabel" text="No food logged yet" styleClass="ring-target"/>
+                        </VBox>
+                        <Label fx:id="dinnerCalLabel" text="0 kcal" styleClass="action-icon"/>
+                    </HBox>
+
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Snack" styleClass="action-text"/>
+                            <Label fx:id="snackSubLabel" text="No food logged yet" styleClass="ring-target"/>
+                        </VBox>
+                        <Label fx:id="snackCalLabel" text="0 kcal" styleClass="action-icon"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Recommendations -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Recommended for you" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                    <Button text="↻ Refresh"
+                            onAction="#refreshRecommendations"
+                            style="-fx-background-color: rgba(255,138,61,0.2);
+                   -fx-background-radius: 10;
+                   -fx-border-color: rgba(255,138,61,0.5);
+                   -fx-border-radius: 10;
+                   -fx-border-width: 1;
+                   -fx-text-fill: #FF8A3D;
+                   -fx-font-size: 12px;
+                   -fx-font-weight: bold;
+                   -fx-cursor: hand;
+                   -fx-padding: 6 12 6 12;"/>
                 </HBox>
+
+                <VBox spacing="8">
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🥗" styleClass="action-icon"/>
+                        <Label fx:id="rec1Label" text="Loading..." styleClass="ring-target"
+                               wrapText="true" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🥗" styleClass="action-icon"/>
+                        <Label fx:id="rec2Label" text="Loading..." styleClass="ring-target"
+                               wrapText="true" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🥗" styleClass="action-icon"/>
+                        <Label fx:id="rec3Label" text="Loading..." styleClass="ring-target"
+                               wrapText="true" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🥗" styleClass="action-icon"/>
+                        <Label fx:id="rec4Label" text="Loading..." styleClass="ring-target"
+                               wrapText="true" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+
+                <Region prefHeight="10"/>
             </VBox>
-            <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
-                <Label text="CARBS" styleClass="macro-label"/>
-                <HBox alignment="BASELINE_LEFT" spacing="2">
-                    <Label fx:id="loggedCarbsLabel" text="0" styleClass="macro-value"/>
-                    <Label fx:id="targetCarbsLabel" text="/ 403g" styleClass="macro-unit"/>
-                </HBox>
-            </VBox>
-            <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
-                <Label text="FATS" styleClass="macro-label"/>
-                <HBox alignment="BASELINE_LEFT" spacing="2">
-                    <Label fx:id="loggedFatsLabel" text="0" styleClass="macro-value"/>
-                    <Label fx:id="targetFatsLabel" text="/ 79g" styleClass="macro-unit"/>
-                </HBox>
-            </VBox>
-        </HBox>
+        </ScrollPane>
 
-        <!-- Add food button -->
-        <Button text="+ Add food"
-                onAction="#openAddFood"
-                styleClass="next-button"
-                maxWidth="Infinity"
-                prefHeight="54"/>
-
-        <!-- Meals list -->
-        <Label text="Meal sections" styleClass="section-title"/>
-
-        <VBox spacing="10">
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
-                <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="Breakfast" styleClass="action-text"/>
-                    <Label fx:id="breakfastSubLabel" text="No food logged yet" styleClass="ring-target"/>
-                </VBox>
-                <Label fx:id="breakfastCalLabel" text="0 kcal" styleClass="action-icon"/>
-            </HBox>
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
-                <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="Lunch" styleClass="action-text"/>
-                    <Label fx:id="lunchSubLabel" text="No food logged yet" styleClass="ring-target"/>
-                </VBox>
-                <Label fx:id="lunchCalLabel" text="0 kcal" styleClass="action-icon"/>
-            </HBox>
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
-                <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="Dinner" styleClass="action-text"/>
-                    <Label fx:id="dinnerSubLabel" text="No food logged yet" styleClass="ring-target"/>
-                </VBox>
-                <Label fx:id="dinnerCalLabel" text="0 kcal" styleClass="action-icon"/>
-            </HBox>
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="12">
-                <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="Snack" styleClass="action-text"/>
-                    <Label fx:id="snackSubLabel" text="No food logged yet" styleClass="ring-target"/>
-                </VBox>
-                <Label fx:id="snackCalLabel" text="0 kcal" styleClass="action-icon"/>
-            </HBox>
-
-        </VBox>
-        <!-- Meal Recommendations (FR29-FR30) -->
-        <Label text="Recommended for you" styleClass="section-title"/>
-
-        <VBox spacing="8">
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
-                <Label text="🥗" styleClass="action-icon"/>
-                <Label fx:id="rec1Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
-            </HBox>
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
-                <Label text="🥗" styleClass="action-icon"/>
-                <Label fx:id="rec2Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
-            </HBox>
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
-                <Label text="🥗" styleClass="action-icon"/>
-                <Label fx:id="rec3Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
-            </HBox>
-
-            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
-                <Label text="🥗" styleClass="action-icon"/>
-                <Label fx:id="rec4Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
-            </HBox>
-
-        </VBox>
-
-        <Region VBox.vgrow="ALWAYS"/>
-
-        <!-- Bottom nav -->
+        <!-- Fixed bottom nav -->
         <HBox styleClass="bottom-nav" alignment="CENTER" spacing="0">
             <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS"
                   onMouseClicked="#backToDashboard">
@@ -192,5 +216,4 @@
         </HBox>
 
     </VBox>
-
 </StackPane>

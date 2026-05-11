@@ -61,21 +61,20 @@
             <VBox spacing="2" HBox.hgrow="ALWAYS">
                 <Label text="DAILY CALORIES" styleClass="ring-label"/>
                 <Label fx:id="caloriesValueLabel" text="0" styleClass="ring-big-number"/>
-                <Label fx:id="caloriesTargetLabel" text="of 0 kcal" styleClass="ring-target"/>
+                <Label fx:id="caloriesTargetLabel" text="/ 0 kcal" styleClass="ring-target"/>
                 <Label fx:id="caloriesRemainingLabel" text="0 left today" styleClass="ring-remaining">
-                    <padding>
-                        <Insets top="4"/>
-                    </padding>
+                    <padding><Insets top="4"/></padding>
                 </Label>
             </VBox>
         </HBox>
 
         <HBox spacing="8">
+
             <VBox styleClass="macro-card" spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
                 <Label text="PROTEIN" styleClass="macro-label"/>
                 <HBox alignment="BASELINE_LEFT" spacing="2">
                     <Label fx:id="proteinValueLabel" text="0" styleClass="macro-value"/>
-                    <Label text="g" styleClass="macro-unit"/>
+                    <Label fx:id="proteinTargetLabel" text="/ 0g" styleClass="macro-unit"/>
                 </HBox>
                 <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
                     <Region fx:id="proteinBarFill" styleClass="macro-bar-fill" prefWidth="0"/>
@@ -86,7 +85,7 @@
                 <Label text="CARBS" styleClass="macro-label"/>
                 <HBox alignment="BASELINE_LEFT" spacing="2">
                     <Label fx:id="carbsValueLabel" text="0" styleClass="macro-value"/>
-                    <Label text="g" styleClass="macro-unit"/>
+                    <Label fx:id="carbsTargetLabel" text="/ 0g" styleClass="macro-unit"/>
                 </HBox>
                 <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
                     <Region fx:id="carbsBarFill" styleClass="macro-bar-fill" prefWidth="0"/>
@@ -97,18 +96,17 @@
                 <Label text="FATS" styleClass="macro-label"/>
                 <HBox alignment="BASELINE_LEFT" spacing="2">
                     <Label fx:id="fatsValueLabel" text="0" styleClass="macro-value"/>
-                    <Label text="g" styleClass="macro-unit"/>
+                    <Label fx:id="fatsTargetLabel" text="/ 0g" styleClass="macro-unit"/>
                 </HBox>
                 <StackPane alignment="CENTER_LEFT" styleClass="macro-bar-track">
                     <Region fx:id="fatsBarFill" styleClass="macro-bar-fill" prefWidth="0"/>
                 </StackPane>
             </VBox>
+
         </HBox>
 
         <Label text="Quick actions" styleClass="section-title">
-            <padding>
-                <Insets top="6"/>
-            </padding>
+            <padding><Insets top="6"/></padding>
         </Label>
 
         <GridPane hgap="8" vgap="8">
