@@ -560,3 +560,18 @@
     -fx-border-width: 8;
     -fx-effect: dropshadow(gaussian, rgba(255, 138, 61, 0.35), 16, 0.3, 0, 3);
 }
+/* ---------- TRANSPARENT SCROLL ---------- */
+.transparent-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+
+.transparent-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.transparent-scroll > .scroll-bar:vertical {
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}

@@ -1,7 +1,8 @@
 package com.health.app.dao;
 
 import com.health.app.database.DBConnection;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,5 +87,57 @@ public class MealDAO {
         }
 
         return 0;
+    }
+    public List<com.health.app.model.FoodItem> getRecommendedFoods(
+            double remainingCalories, String fitnessGoal) {
+
+        String sql;
+
+        if ("Gain muscle".equalsIgnoreCase(fitnessGoal)) {
+            // High protein foods first
+            sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, " +
+                    "carbs_per_100g, fats_per_100g FROM food_items " +
+                    "WHERE calories_per_100g <= ? " +
+                    "ORDER BY protein_per_100g DESC LIMIT 4";
+        } else if ("Lose weight".equalsIgnoreCase(fitnessGoal)) {
+            // Low calorie foods first
+            sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, " +
+                    "carbs_per_100g, fats_per_100g FROM food_items " +
+                    "WHERE calories_per_100g <= ? " +
+                    "ORDER BY calories_per_100g ASC LIMIT 4";
+        } else {
+            // Balanced - moderate calories
+            sql = "SELECT food_id, name, calories_per_100g, protein_per_100g, " +
+                    "carbs_per_100g, fats_per_100g FROM food_items " +
+                    "WHERE calories_per_100g <= ? " +
+                    "ORDER BY protein_per_100g DESC LIMIT 4";
+        }
+
+        List<com.health.app.model.FoodItem> results = new java.util.ArrayList<>();
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Use per-100g threshold based on remaining calories
+            double threshold = Math.max(remainingCalories, 50);
+            stmt.setDouble(1, threshold);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                results.add(new com.health.app.model.FoodItem(
+                        rs.getInt("food_id"),
+                        rs.getString("name"),
+                        rs.getDouble("calories_per_100g"),
+                        rs.getDouble("protein_per_100g"),
+                        rs.getDouble("carbs_per_100g"),
+                        rs.getDouble("fats_per_100g")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return results;
     }
 }

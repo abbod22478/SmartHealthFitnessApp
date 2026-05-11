@@ -1,5 +1,6 @@
 package com.health.app.controller;
 
+
 import com.health.app.dao.FoodItemDAO;
 import com.health.app.model.FoodItem;
 import javafx.collections.FXCollections;
@@ -11,10 +12,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+
 import java.util.List;
 
 public class AddFoodController {
 
+    @FXML private TextField textInputField;
+    @FXML private Label textParseResultLabel;
     @FXML private ComboBox<FoodItem> foodItemBox;
     @FXML private ComboBox<String> mealTypeBox;
     @FXML private TextField quantityField;
@@ -197,6 +201,46 @@ public class AddFoodController {
             messageLabel.setStyle("-fx-text-fill: #FF6B6B; -fx-font-size: 13px; -fx-font-weight: bold;");
         } else {
             messageLabel.setStyle("-fx-text-fill: #43D18D; -fx-font-size: 13px; -fx-font-weight: bold;");
+        }
+    }
+    @FXML
+    private void parseTextInput() {
+        String input = textInputField.getText().trim();
+
+        if (input.isEmpty()) {
+            showMessage("Please enter a meal description.", true);
+            return;
+        }
+
+        // Extract quantity (look for number followed by 'g')
+        double grams = 100; // default
+        String foodKeyword = input;
+
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("(\\d+(?:\\.\\d+)?)\\s*g");
+        java.util.regex.Matcher matcher = pattern.matcher(input.toLowerCase());
+
+        if (matcher.find()) {
+            grams = Double.parseDouble(matcher.group(1));
+            // Remove the quantity part to get food name
+            foodKeyword = input.replaceAll("(?i)(\\d+(?:\\.\\d+)?)\\s*g", "").trim();
+        }
+
+        // Search food in database
+        FoodItem found = foodItemDAO.searchFoodByName(foodKeyword);
+
+        if (found != null) {
+            // Populate the dropdowns
+            foodItemBox.setValue(found);
+            quantityField.setText(String.valueOf((int) grams));
+            calculateNutrition();
+
+            textParseResultLabel.setText("Found: " + found.getName() + " — " + (int) grams + "g");
+            textParseResultLabel.setStyle("-fx-text-fill: #43D18D; -fx-font-size: 12px;");
+            showMessage("Food recognized! Review and save below.", false);
+        } else {
+            textParseResultLabel.setText("No match found for: \"" + foodKeyword + "\"");
+            textParseResultLabel.setStyle("-fx-text-fill: #FF6B6B; -fx-font-size: 12px;");
+            showMessage("Food not found in database. Try selecting manually.", true);
         }
     }
 }

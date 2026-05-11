@@ -9,6 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 public class MealController {
+    @FXML private Label rec1Label;
+    @FXML private Label rec2Label;
+    @FXML private Label rec3Label;
+    @FXML private Label rec4Label;
     @FXML private Label breakfastCalLabel;
     @FXML private Label lunchCalLabel;
     @FXML private Label dinnerCalLabel;
@@ -86,6 +90,8 @@ public class MealController {
             snackCalLabel.setText((int) snackCal + " kcal");
             snackSubLabel.setText(snackCal > 0 ? "Food logged" : "No food logged yet");
         }
+        loadRecommendations();
+
     }
 
     private void refreshUI() {
@@ -168,6 +174,33 @@ public class MealController {
             this.targetProtein = AppSession.getTargetProtein();
             this.targetCarbs = AppSession.getTargetCarbs();
             this.targetFats = AppSession.getTargetFats();
+        }
+    }
+    private void loadRecommendations() {
+        double remaining = Math.max(0, targetCalories - loggedCalories);
+
+        String goal = "";
+        if (com.health.app.AppSession.getCurrentUser() != null) {
+            goal = com.health.app.AppSession.getCurrentUser().getFitnessGoal();
+        }
+
+        com.health.app.dao.MealDAO mealDAO = new com.health.app.dao.MealDAO();
+        java.util.List<com.health.app.model.FoodItem> recs =
+                mealDAO.getRecommendedFoods(remaining, goal);
+
+        Label[] labels = {rec1Label, rec2Label, rec3Label, rec4Label};
+
+        for (int i = 0; i < labels.length; i++) {
+            if (labels[i] == null) continue;
+            if (i < recs.size()) {
+                com.health.app.model.FoodItem food = recs.get(i);
+                labels[i].setText(food.getName() +
+                        " — " + (int) food.getCaloriesPer100g() + " kcal / 100g" +
+                        " | P: " + (int) food.getProteinPer100g() + "g");
+                labels[i].setVisible(true);
+            } else {
+                labels[i].setVisible(false);
+            }
         }
     }
 }

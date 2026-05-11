@@ -43,6 +43,27 @@
         <Label text="SELECT FOOD" styleClass="food-section-label"/>
 
         <Region prefHeight="12"/>
+        <!-- Free text input section (FR18-FR21) -->
+        <Label text="OR ENTER AS TEXT" styleClass="food-section-label"/>
+        <Region prefHeight="6"/>
+
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <TextField fx:id="textInputField"
+                       styleClass="food-input"
+                       promptText='e.g. "chicken breast 200g"'
+                       HBox.hgrow="ALWAYS"/>
+            <Button text="Parse"
+                    onAction="#parseTextInput"
+                    styleClass="next-button"
+                    prefWidth="80" prefHeight="48"/>
+        </HBox>
+
+        <Label fx:id="textParseResultLabel" text="" wrapText="true"
+               style="-fx-font-size: 12px;"/>
+
+        <Region prefHeight="10"/>
+        <Label text="OR SELECT FROM DATABASE" styleClass="food-section-label"/>
+        <Region prefHeight="6"/>
 
         <!-- Food item label -->
         <Label text="Food item from database" styleClass="food-section-label"

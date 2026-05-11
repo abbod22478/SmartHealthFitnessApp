@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.health.app.controller.WorkoutController"
+           prefWidth="430" prefHeight="760"
+           styleClass="root-pane"
+           stylesheets="/com/health/app/view/dashboard.css">
+
+    <Region styleClass="glow-orb-orange"
+            prefWidth="360" prefHeight="360"
+            maxWidth="360" maxHeight="360"
+            translateX="-150" translateY="-260"/>
+    <Region styleClass="glow-orb-red"
+            prefWidth="360" prefHeight="360"
+            maxWidth="360" maxHeight="360"
+            translateX="160" translateY="300"/>
+
+    <!-- VIEW 1: Plans list -->
+    <VBox fx:id="plansView" spacing="14" alignment="TOP_CENTER"
+          prefWidth="430" prefHeight="760">
+        <padding><Insets top="22" right="20" bottom="14" left="20"/></padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button text="←" onAction="#backToDashboard"
+                    styleClass="small-back-button"
+                    minWidth="44" minHeight="44" maxWidth="44" maxHeight="44"/>
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Fitness" styleClass="welcome-label"/>
+                <Label text="My Workouts" styleClass="user-name"/>
+            </VBox>
+        </HBox>
+
+        <!-- Stats card -->
+        <HBox styleClass="ring-card" spacing="20" alignment="CENTER">
+            <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
+                <Label fx:id="totalSessionsLabel" text="0" styleClass="ring-big-number"/>
+                <Label text="Sessions Done" styleClass="ring-label"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
+                <Label fx:id="totalPlansLabel" text="0" styleClass="ring-big-number"/>
+                <Label text="Plans Created" styleClass="ring-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- Create new plan -->
+        <Label text="Create New Plan" styleClass="section-title"/>
+
+        <VBox styleClass="ring-card" spacing="10">
+            <Label text="Plan name" style="-fx-text-fill: #9A9AA8; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="planNameField" styleClass="food-input"
+                       promptText="e.g. Push Day, Leg Day..." maxWidth="Infinity"/>
+            <Button text="+ Create Plan" onAction="#createPlan"
+                    styleClass="next-button" maxWidth="Infinity" prefHeight="46"/>
+        </VBox>
+
+        <!-- My Plans list -->
+        <Label text="My Plans" styleClass="section-title"/>
+
+        <ScrollPane styleClass="transparent-scroll" fitToWidth="true"
+                    VBox.vgrow="ALWAYS" hbarPolicy="NEVER">
+            <VBox fx:id="plansListContainer" spacing="10"/>
+        </ScrollPane>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox styleClass="bottom-nav" alignment="CENTER" spacing="0">
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2"
+                  HBox.hgrow="ALWAYS" onMouseClicked="#backToDashboard">
+                <Label text="⌂" styleClass="nav-icon"/>
+                <Label text="HOME" styleClass="nav-text"/>
+            </VBox>
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="▣" styleClass="nav-icon-active"/>
+                <Label text="WORKOUT" styleClass="nav-text-active"/>
+            </VBox>
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="🍴" styleClass="nav-icon"/>
+                <Label text="MEALS" styleClass="nav-text"/>
+            </VBox>
+            <VBox styleClass="nav-item" alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="↑" styleClass="nav-icon"/>
+                <Label text="PROGRESS" styleClass="nav-text"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- VIEW 2: Plan detail (add exercises + start) -->
+    <VBox fx:id="planDetailView" spacing="14" alignment="TOP_CENTER"
+          prefWidth="430" prefHeight="760" visible="false" managed="false">
+        <padding><Insets top="22" right="20" bottom="14" left="20"/></padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button text="←" onAction="#backToPlans"
+                    styleClass="small-back-button"
+                    minWidth="44" minHeight="44" maxWidth="44" maxHeight="44"/>
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Workout" styleClass="welcome-label"/>
+                <Label fx:id="planDetailNameLabel" text="Plan" styleClass="user-name"/>
+            </VBox>
+        </HBox>
+
+        <!-- Add exercise form -->
+        <VBox styleClass="ring-card" spacing="10">
+            <Label text="Add Exercise" styleClass="section-title"/>
+
+            <TextField fx:id="exerciseNameField" styleClass="food-input"
+                       promptText="Exercise name (e.g. Bench Press)" maxWidth="Infinity"/>
+
+            <HBox spacing="8">
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Sets" style="-fx-text-fill: #9A9AA8; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <TextField fx:id="setsField" styleClass="food-input" promptText="3" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Reps" style="-fx-text-fill: #9A9AA8; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <TextField fx:id="repsField" styleClass="food-input" promptText="10" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Rest (sec)" style="-fx-text-fill: #9A9AA8; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <TextField fx:id="restField" styleClass="food-input" promptText="60" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+
+            <Button text="+ Add Exercise" onAction="#addExercise"
+                    styleClass="next-button" maxWidth="Infinity" prefHeight="46"/>
+        </VBox>
+
+        <!-- Exercises list -->
+        <Label text="Exercises" styleClass="section-title"/>
+
+        <ScrollPane styleClass="transparent-scroll" fitToWidth="true"
+                    VBox.vgrow="ALWAYS" hbarPolicy="NEVER">
+            <VBox fx:id="exercisesListContainer" spacing="8"/>
+        </ScrollPane>
+
+        <Label fx:id="planMessageLabel" text="" wrapText="true"/>
+
+        <Button text="▶  Start Workout" onAction="#startWorkout"
+                styleClass="next-button" maxWidth="Infinity" prefHeight="52"/>
+    </VBox>
+
+    <!-- VIEW 3: Active workout tracker -->
+    <VBox fx:id="workoutActiveView" spacing="14" alignment="TOP_CENTER"
+          prefWidth="430" prefHeight="760" visible="false" managed="false">
+        <padding><Insets top="22" right="20" bottom="14" left="20"/></padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Active Workout" styleClass="welcome-label"/>
+                <Label fx:id="activeWorkoutNameLabel" text="Plan" styleClass="user-name"/>
+            </VBox>
+        </HBox>
+
+        <!-- Current exercise card -->
+        <VBox styleClass="ring-card" spacing="12" alignment="CENTER">
+            <Label fx:id="currentExerciseLabel" text="Exercise Name"
+                   style="-fx-text-fill: #FFFFFF; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label fx:id="setsProgressLabel" text="Set 0 / 0"
+                   style="-fx-text-fill: #FF8A3D; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label fx:id="repsLabel" text="0 reps"
+                   style="-fx-text-fill: #9A9AA8; -fx-font-size: 14px;"/>
+
+            <!-- Rest timer -->
+            <VBox fx:id="restTimerBox" spacing="6" alignment="CENTER" visible="false" managed="false">
+                <Label text="REST TIME" style="-fx-text-fill: #9A9AA8; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <Label fx:id="timerLabel" text="60"
+                       style="-fx-text-fill: #FF3B5C; -fx-font-size: 40px; -fx-font-weight: bold;"/>
+                <Label text="seconds" style="-fx-text-fill: #9A9AA8; -fx-font-size: 12px;"/>
+            </VBox>
+        </VBox>
+
+        <!-- Progress -->
+        <HBox styleClass="macro-card" spacing="14" alignment="CENTER">
+            <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
+                <Label fx:id="exercisesCompleteLabel" text="0" styleClass="macro-value"/>
+                <Label text="Done" styleClass="macro-label"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
+                <Label fx:id="exercisesRemainingLabel" text="0" styleClass="macro-value"/>
+                <Label text="Left" styleClass="macro-label"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
+                <Label fx:id="totalExercisesLabel" text="0" styleClass="macro-value"/>
+                <Label text="Total" styleClass="macro-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- Action buttons -->
+        <Button fx:id="completeSetButton" text="✓ Complete Set"
+                onAction="#completeSet"
+                styleClass="next-button" maxWidth="Infinity" prefHeight="52"/>
+
+        <Button fx:id="skipExerciseButton" text="Skip Exercise →"
+                onAction="#skipExercise"
+                style="-fx-background-color: rgba(255,255,255,0.06); -fx-background-radius: 18; -fx-border-color: rgba(255,138,61,0.4); -fx-border-radius: 18; -fx-border-width: 1.5; -fx-text-fill: #9A9AA8; -fx-font-size: 14px; -fx-cursor: hand;"
+                maxWidth="Infinity" prefHeight="46"/>
+
+        <Label fx:id="workoutMessageLabel" text="" wrapText="true"
+               style="-fx-text-fill: #43D18D; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+    </VBox>
+
+</StackPane>

@@ -141,6 +141,32 @@
             </HBox>
 
         </VBox>
+        <!-- Meal Recommendations (FR29-FR30) -->
+        <Label text="Recommended for you" styleClass="section-title"/>
+
+        <VBox spacing="8">
+
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                <Label text="🥗" styleClass="action-icon"/>
+                <Label fx:id="rec1Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                <Label text="🥗" styleClass="action-icon"/>
+                <Label fx:id="rec2Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                <Label text="🥗" styleClass="action-icon"/>
+                <Label fx:id="rec3Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <HBox styleClass="action-card" alignment="CENTER_LEFT" spacing="10">
+                <Label text="🥗" styleClass="action-icon"/>
+                <Label fx:id="rec4Label" text="" styleClass="ring-target" wrapText="true" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+        </VBox>
 
         <Region VBox.vgrow="ALWAYS"/>
 
